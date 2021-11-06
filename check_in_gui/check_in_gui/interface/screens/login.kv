@@ -1,0 +1,35 @@
+
+<LoginScreen>
+    GridLayout:
+        height: window.height
+        width: window.width
+        cols:3
+        rows:3
+        Label:
+            text:'Please log in'
+            font_size: 20
+            center_x: root.width/2
+            top: root.top-50
+        TextInput:
+            id: "user_input"
+            text: ""
+            center_x: root.width/2
+            top: root.top-200
+            width: 200
+            height: 50
+        TextInput:
+            id: "password_input"
+            text: ""
+            center_x: root.width/2
+            top: root.top-300
+            width: 200
+            height: 50
+            password: True
+        Button:
+            id: "submit_login_button"
+            text: "Submit"
+            center_x: root.width/2+200
+            top: root.top-250
+            width: 100
+            height: 50
+            on_press: root.login()

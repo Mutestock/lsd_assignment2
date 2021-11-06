@@ -1,0 +1,16 @@
+#:kivy 2.0.0
+#:include interface/screens/login.kv
+
+<CheckIn>:
+    ScreenManager:
+        id: screen_manager
+        LoginScreen:
+            #center: root.center
+            name: "login"
+            manager: "screen_manager"
+
+    #GridLayout:
+    #    height: root.height
+    #    width: root.width
+    #    cols: 3
+    #    rows: 2

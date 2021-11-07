@@ -2,12 +2,19 @@
 #:include interface/screens/login.kv
 
 <CheckIn>:
-    ScreenManager:
-        id: screen_manager
-        LoginScreen:
-            #center: root.center
-            name: "login"
-            manager: "screen_manager"
+    BoxLayout:
+        orientation:'vertical'
+        height: root.height
+        width: root.width
+        #cols: 3
+        #rows: 2
+        ScreenManager:
+            id: screen_manager
+            LoginScreen:
+                #center: root.center
+                id: login_screen
+                name: "login"
+                manager: "screen_manager"
 
     #GridLayout:
     #    height: root.height

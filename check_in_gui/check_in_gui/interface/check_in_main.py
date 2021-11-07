@@ -5,6 +5,8 @@ from interface.screens.login import LoginScreen
 
 Builder.load_file("interface/check_in.kv")
 
+#https://stackoverflow.com/questions/47963198/screen-manager-in-kivy-with-kv-file
+
 class CheckIn(Widget):
     pass
 

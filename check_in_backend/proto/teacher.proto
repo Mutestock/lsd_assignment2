@@ -1,0 +1,20 @@
+syntax = "proto3";
+package teacher;
+
+service Teacher {
+  rpc GenerateCode(GenerateCodeRequest) returns (GenerateCodeResponse) {}
+  rpc StartCountdown(StartCountdownRequest) returns (StartCountdownResponse) {}
+  rpc ExtendCountdown(ExtendCountdownRequest)
+      returns (ExtendCountdownResponse) {}
+}
+
+// ##### Request #####
+
+message GenerateCodeRequest {}
+message StartCountdownRequest { int32 millis = 1; }
+message ExtendCountdownRequest { int32 millis = 1; }
+
+// ##### Response #####
+message GenerateCodeResponse { string code = 1; }
+message StartCountdownResponse { string msg = 1; }
+message ExtendCountdownResponse { string msg = 1; }

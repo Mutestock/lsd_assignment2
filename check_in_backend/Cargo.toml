@@ -5,15 +5,21 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "server"
+path = "src/main.rs"
+
 [dependencies]
 
 #primary
-tonic="0.5.2"
-tokio="1.12.0"
+tonic ="0.6.1"
+tokio={version="1.12.0", features=["full"]}
 prost="0.9.0"
+mongodb={version="2.0.1", features=["tokio-runtime"]}
 
 #utils
 toml="0.5.8"
+lazy_static="1.4.0"
 
 #serde
 serde = "1.0.130"
@@ -21,5 +27,5 @@ serde_derive="1.0.130"
 serde_json="1.0.68"
 
 
-[dev-dependencies]
-tonic-build="0.5.2"
+[build-dependencies]
+tonic-build="0.6.0"

@@ -1,0 +1,31 @@
+syntax = "proto3";
+package group;
+
+service Group {
+  rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+  rpc AddStudentToGroup(AddStudentToGroupRequest)
+      returns (AddStudentToGroupResponse) {}
+  rpc RemoveStudentFromGroup(RemoveStudentFromGroupRequest)
+      returns (RemoveStudentFromGroupResponse) {}
+  rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+}
+
+// ##### Request #####
+
+message CreateGroupRequest { string name = 1; }
+message AddStudentToGroupRequest {
+  int32 student_id = 1;
+  int32 group_id = 2;
+}
+message RemoveStudentFromGroupRequest {
+  int32 student_id = 1;
+  int32 group_id = 2;
+}
+message DeleteGroupRequest { int32 group_id = 1; }
+
+// ##### Response #####
+
+message CreateGroupResponse { string msg = 1; }
+message AddStudentToGroupResponse { string msg = 1; }
+message RemoveStudentFromGroupResponse { string msg = 1; }
+message DeleteGroupResponse { string msg = 1; }

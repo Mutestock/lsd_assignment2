@@ -9,6 +9,7 @@ python = "^3.9"
 Kivy = "^2.0.0"
 matplotlib = "^3.4.3"
 requests = "^2.26.0"
+grpcio = "^1.41.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

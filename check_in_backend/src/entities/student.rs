@@ -1,2 +1,2 @@
-//tonic::include_proto!("student");
+tonic::include_proto!("student");
 

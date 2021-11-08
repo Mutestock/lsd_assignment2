@@ -1,6 +1,6 @@
 #![allow(dead_code, unused_variables, unused_imports)]
 
-use crate::connection::mongo_connection;
+use crate::connection::pg_connection::get_pg_pool;
 use crate::entities::student;
 
 pub async fn code_check_in(

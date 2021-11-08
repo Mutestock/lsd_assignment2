@@ -1,13 +1,10 @@
-use std::fmt::format;
-
-use sqlx::postgres::PgPool;
-
 use crate::utils::config::{is_production_mode, is_testing_mode, CONFIG};
+use sqlx::postgres::PgPool;
 
 // Mode control
 lazy_static! {
-    static ref STUFF: String = {
-        if is_production_mode(){
+    static ref DATABASE_URL: String = {
+        if is_production_mode() {
             format!(
                 "postgres://{}:{}@{}:{}/{}",
                 CONFIG.production.database.user,
@@ -16,8 +13,7 @@ lazy_static! {
                 CONFIG.production.database.port,
                 CONFIG.production.database.db,
             )
-        }
-        else if is_testing_mode() {
+        } else if is_testing_mode() {
             format!(
                 "postgres://{}:{}@{}:{}/{}",
                 CONFIG.testing.database.user,
@@ -26,8 +22,7 @@ lazy_static! {
                 CONFIG.testing.database.port,
                 CONFIG.testing.database.db,
             )
-        }
-        else{
+        } else {
             format!(
                 "postgres://{}:{}@{}:{}/{}",
                 CONFIG.development.database.user,
@@ -40,6 +35,6 @@ lazy_static! {
     };
 }
 
-pub async fn get_pg_pool() -> anyhow::Result<PgPool> {
+pub async fn get_pg_pool() -> Result<PgPool, Box<dyn std::error::Error>> {
     Ok(PgPool::connect(&DATABASE_URL).await?)
 }

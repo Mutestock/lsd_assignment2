@@ -6,8 +6,7 @@ use tonic::{Request, Response, Status};
 pub struct TeacherCon {}
 
 #[tonic::async_trait]
-impl Teacher for TeacherCon{
-
+impl Teacher for TeacherCon {
     async fn generate_code(
         &self,
         request: Request<teacher::GenerateCodeRequest>,
@@ -44,5 +43,4 @@ impl Teacher for TeacherCon{
                 .expect("Person Update failed"),
         ))
     }
-
 }

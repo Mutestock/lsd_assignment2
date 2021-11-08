@@ -20,6 +20,15 @@ lazy_static! {
             )
         }
     };
+    static ref DATABASE_NAME: String = {
+        if is_production_mode() {
+            CONFIG.production.database.db.clone()
+        } else if is_testing_mode() {
+            CONFIG.testing.database.db.clone()
+        } else {
+            CONFIG.development.database.db.clone()
+        }
+    };
 }
 
 async fn create_client() -> Result<Client, Box<dyn std::error::Error>> {
@@ -29,5 +38,7 @@ async fn create_client() -> Result<Client, Box<dyn std::error::Error>> {
 }
 
 pub async fn get_db_handle() -> Result<Database, Box<dyn std::error::Error>> {
-    Ok(create_client().await?.database("check_in"))
+    Ok(create_client()
+        .await?
+        .database(DATABASE_NAME.to_owned().as_str()))
 }

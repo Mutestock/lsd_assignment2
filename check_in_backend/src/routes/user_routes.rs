@@ -1,13 +1,12 @@
 use crate::{entities::user, logic::user_handler};
-use user::user_server::User;
 use tonic::{Request, Response, Status};
+use user::user_server::User;
 
 #[derive(Default)]
 pub struct UserCon {}
 
 #[tonic::async_trait]
 impl User for UserCon {
-
     async fn login(
         &self,
         request: Request<user::LoginRequest>,

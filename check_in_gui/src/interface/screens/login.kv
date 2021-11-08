@@ -1,4 +1,4 @@
-
+#:kivy 2.0.0
 <LoginScreen>
     Login:
 
@@ -20,12 +20,15 @@
                 rows:2
                 TextInput:
                     id: "userinput"
-                    text: ""
+                    text: root.username_input
+                    multiline: False
+                    focus: True
                 TextInput:
                     id: "password_input"
-                    text: ""
+                    text: root.password_input
                     password: True
+                    multiline: False
             Button:
                 id: "submit_login_button"
                 text: "Submit"
-                on_press: root.login()
+                on_press: root.login(root.username_input, root.password_input)

@@ -1,13 +1,13 @@
 use crate::entities::group;
 use crate::logic::group_handler;
-use group::group_server::{Group};
+use group::group_server::Group;
 use tonic::{Request, Response, Status};
 
 #[derive(Default)]
-pub struct GroupCon{}
+pub struct GroupCon {}
 
 #[tonic::async_trait]
-impl Group for GroupCon{
+impl Group for GroupCon {
     async fn create_group(
         &self,
         request: Request<group::CreateGroupRequest>,
@@ -56,6 +56,4 @@ impl Group for GroupCon{
                 .expect("Person Update failed"),
         ))
     }
-
 }
-

@@ -19,5 +19,3 @@ pub async fn extend_countdown(
 ) -> Result<teacher::ExtendCountdownResponse, Box<dyn std::error::Error>> {
     todo!()
 }
-
-

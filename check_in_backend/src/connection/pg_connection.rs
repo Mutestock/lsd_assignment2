@@ -35,6 +35,6 @@ lazy_static! {
     };
 }
 
-pub async fn get_pg_pool() -> Result<PgPool, Box<dyn std::error::Error>> {
+pub async fn get_pg_pool() -> anyhow::Result<PgPool>{
     Ok(PgPool::connect(&DATABASE_URL).await?)
 }

@@ -23,6 +23,7 @@ toml="0.5.8"
 lazy_static="1.4.0"
 rust-argon2="0.8.3"
 rand="0.8.4"
+anyhow="1.0.45"
 
 
 #serde

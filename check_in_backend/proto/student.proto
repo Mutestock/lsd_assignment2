@@ -29,7 +29,10 @@ message GetStatsResponse {
 message GetAllStudentsResponse {
   message Stud {
     int32 id = 1;
-    string username = 2;
+    bool is_teacher = 2;
+    string username = 3;
+    string password = 4;
+    string salt = 5;
   }
   repeated Stud studs = 1;
 }

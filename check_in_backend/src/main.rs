@@ -8,13 +8,13 @@ mod routes;
 mod utils;
 
 use entities::{
-    group::group_server::GroupServer, student::student_server::StudentServer,
-    teacher::teacher_server::TeacherServer, user::user_server::UserServer,
+    group::group_server::GroupServer, person::student_server::StudentServer,
+    person::teacher_server::TeacherServer, person::user_server::UserServer,
 };
 use routes::group_routes::GroupCon;
 use utils::config::{is_production_mode, is_testing_mode, CONFIG};
 
-use crate::routes::{student_routes::StudentCon, teacher_routes::TeacherCon, user_routes::UserCon};
+use crate::routes::{student_routes::StudentCon, teacher_routes::TeacherCon, person_routes::UserCon};
 
 #[macro_use]
 extern crate lazy_static;

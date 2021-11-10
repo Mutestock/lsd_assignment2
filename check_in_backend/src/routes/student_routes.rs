@@ -1,5 +1,5 @@
-use crate::{entities::student, logic::student_handler};
-use student::student_server::Student;
+use crate::{entities::person, logic::student_handler};
+use person::student_server::Student;
 use tonic::{Request, Response, Status};
 
 #[derive(Default)]
@@ -9,8 +9,8 @@ pub struct StudentCon {}
 impl Student for StudentCon {
     async fn code_check_in(
         &self,
-        request: Request<student::CodeCheckInRequest>,
-    ) -> Result<Response<student::CodeCheckInResponse>, Status> {
+        request: Request<person::CodeCheckInRequest>,
+    ) -> Result<Response<person::CodeCheckInResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
@@ -21,8 +21,8 @@ impl Student for StudentCon {
     }
     async fn get_stats(
         &self,
-        request: Request<student::GetStatsRequest>,
-    ) -> Result<Response<student::GetStatsResponse>, Status> {
+        request: Request<person::GetStatsRequest>,
+    ) -> Result<Response<person::GetStatsResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
@@ -33,8 +33,8 @@ impl Student for StudentCon {
     }
     async fn get_all_students(
         &self,
-        request: Request<student::GetAllStudentsRequest>,
-    ) -> Result<Response<student::GetAllStudentsResponse>, Status> {
+        request: Request<person::GetAllStudentsRequest>,
+    ) -> Result<Response<person::GetAllStudentsResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(

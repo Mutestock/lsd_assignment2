@@ -1,5 +1,5 @@
-use crate::{entities::teacher, logic::teacher_handler};
-use teacher::teacher_server::Teacher;
+use crate::{entities::person, logic::teacher_handler};
+use person::teacher_server::Teacher;
 use tonic::{Request, Response, Status};
 
 #[derive(Default)]
@@ -9,8 +9,8 @@ pub struct TeacherCon {}
 impl Teacher for TeacherCon {
     async fn generate_code(
         &self,
-        request: Request<teacher::GenerateCodeRequest>,
-    ) -> Result<Response<teacher::GenerateCodeResponse>, Status> {
+        request: Request<person::GenerateCodeRequest>,
+    ) -> Result<Response<person::GenerateCodeResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
@@ -21,8 +21,8 @@ impl Teacher for TeacherCon {
     }
     async fn start_countdown(
         &self,
-        request: Request<teacher::StartCountdownRequest>,
-    ) -> Result<Response<teacher::StartCountdownResponse>, Status> {
+        request: Request<person::StartCountdownRequest>,
+    ) -> Result<Response<person::StartCountdownResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
@@ -33,8 +33,8 @@ impl Teacher for TeacherCon {
     }
     async fn extend_countdown(
         &self,
-        request: Request<teacher::ExtendCountdownRequest>,
-    ) -> Result<Response<teacher::ExtendCountdownResponse>, Status> {
+        request: Request<person::ExtendCountdownRequest>,
+    ) -> Result<Response<person::ExtendCountdownResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(

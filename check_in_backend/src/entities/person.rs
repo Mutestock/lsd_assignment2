@@ -1,4 +1,3 @@
-
 tonic::include_proto!("user");
 tonic::include_proto!("teacher");
 tonic::include_proto!("student");

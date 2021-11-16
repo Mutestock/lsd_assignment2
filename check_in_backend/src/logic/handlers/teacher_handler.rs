@@ -21,19 +21,14 @@ pub async fn generate_code_and_start(
     "#,
     )
     .bind(get_current_time_and_add_request_millis(&request))
-    .bind(hash_and_salt(request.ip_encrypted, &salt).expect("Could not hash and salt argon2 pwd"))
+    .bind(hash_and_salt(request.ip_encrypted, &salt)?)
     .bind(match str::from_utf8(&salt) {
         Ok(v) => v,
         Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
     })
     .bind(&code)
-    .execute(
-        &get_pg_pool()
-            .await
-            .expect("Could not create pg pool for generate code and start"),
-    )
-    .await
-    .expect("could not execute generate code and start query");
+    .execute(&get_pg_pool().await?)
+    .await?;
 
     Ok(person::GenerateCodeAndStartResponse { code: code })
 }
@@ -49,13 +44,8 @@ pub async fn edit_countdown(
     )
     .bind(request.date_time)
     .bind(request.code)
-    .execute(
-        &get_pg_pool()
-            .await
-            .expect("Could not get pool for countdown edit"),
-    )
-    .await
-    .expect("Could not execute edit countdown query");
+    .execute(&get_pg_pool().await?)
+    .await?;
 
     Ok(person::EditCountdownResponse {
         msg: "Ok".to_owned(),
@@ -71,13 +61,8 @@ pub async fn delete_code(
         "#,
     )
     .bind(request.code)
-    .execute(
-        &get_pg_pool()
-            .await
-            .expect("Could not create pool for delete code query"),
-    )
-    .await
-    .expect("Could not execute delete code query");
+    .execute(&get_pg_pool().await?)
+    .await?;
 
     Ok(person::DeleteCodeResponse {
         msg: "Ok".to_owned(),

@@ -17,11 +17,9 @@ pub async fn create(
     .bind(request.name)
     .execute(
         &get_pg_pool()
-            .await
-            .expect("Could not create pool in create group"),
+            .await?,
     )
-    .await
-    .expect("Could not create group");
+    .await?;
 
     Ok(group::CreateGroupResponse {
         msg: "201".to_owned(),
@@ -39,11 +37,9 @@ pub async fn delete(
     .bind(request.group_id)
     .execute(
         &get_pg_pool()
-            .await
-            .expect("Could not delete pool in delete group"),
+            .await?,
     )
-    .await
-    .expect("Could not delete group");
+    .await?;
 
     Ok(group::DeleteGroupResponse {
         msg: "204".to_owned(),
@@ -62,11 +58,9 @@ pub async fn remove_student_from_group(
     .bind(request.group_id)
     .execute(
         &get_pg_pool()
-            .await
-            .expect("Could not remove student from group"),
+            .await?,
     )
-    .await
-    .expect("Could no remove person from group");
+    .await?;
 
     Ok(group::RemoveStudentFromGroupResponse {
         msg: "204".to_owned(),
@@ -86,11 +80,9 @@ pub async fn add_student_to_group(
     .bind(request.group_id)
     .execute(
         &get_pg_pool()
-            .await
-            .expect("Could not create pool in create group"),
+            .await?,
     )
-    .await
-    .expect("Could not create group");
+    .await?;
 
     Ok(group::AddStudentToGroupResponse {
         msg: "201".to_owned(),

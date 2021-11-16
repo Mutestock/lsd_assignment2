@@ -16,17 +16,11 @@ pub async fn login(
         "#,
     )
     .bind(request.username)
-    .fetch_one(
-        &get_pg_pool()
-            .await
-            .expect("Could not create a pool for login"),
-    )
-    .await
-    .expect("Could not execute login query");
+    .fetch_one(&get_pg_pool().await?)
+    .await?;
 
     Ok(person::LoginResponse {
-        login_successful: verify_encryption(person.pwd, request.password.as_bytes())
-            .expect("Could not verify password for login"),
+        login_successful: verify_encryption(person.pwd, request.password.as_bytes())?,
     })
 }
 
@@ -48,11 +42,9 @@ pub async fn create_user(
     .bind(str::from_utf8(&salt).expect("Could not cast salt to string"))
     .execute(
         &get_pg_pool()
-            .await
-            .expect("Could not create a pool for create_user"),
+            .await?,
     )
-    .await
-    .expect("Could not execute create user query");
+    .await?;
 
     Ok(person::CreateUserResponse {
         msg: "201".to_owned(),

@@ -1,4 +1,4 @@
-use crate::{entities::person, logic::person_handler};
+use crate::{entities::person, logic::handlers::person_handler};
 use tonic::{Request, Response, Status};
 use person::user_server::User;
 

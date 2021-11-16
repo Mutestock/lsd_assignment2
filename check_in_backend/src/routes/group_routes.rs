@@ -1,5 +1,5 @@
 use crate::entities::group;
-use crate::logic::group_handler;
+use crate::logic::handlers::group_handler;
 use group::group_server::Group;
 use tonic::{Request, Response, Status};
 

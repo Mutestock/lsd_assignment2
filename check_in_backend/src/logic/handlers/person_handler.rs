@@ -25,7 +25,7 @@ pub async fn login(
     .expect("Could not execute login query");
 
     Ok(person::LoginResponse {
-        login_successful: verify_password(person.pwd, request.password.as_bytes())
+        login_successful: verify_encryption(person.pwd, request.password.as_bytes())
             .expect("Could not verify password for login"),
     })
 }
@@ -34,7 +34,7 @@ pub async fn create_user(
     request: person::CreateUserRequest,
 ) -> Result<person::CreateUserResponse, Box<dyn std::error::Error>> {
     let salt = generate_salt();
-    let salty_pwd = hash_and_salt_password(request.password, &salt)?;
+    let salty_pwd = hash_and_salt(request.password, &salt)?;
 
     sqlx::query(
         r#"

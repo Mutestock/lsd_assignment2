@@ -1,16 +1,7 @@
-use sqlx::FromRow;
 
 tonic::include_proto!("user");
 tonic::include_proto!("teacher");
 tonic::include_proto!("student");
-
-#[derive(sqlx::FromRow)]
-pub struct NewPerson {
-    is_teacher: bool,
-    username: String,
-    pwd: String,
-    salt: String,
-}
 
 #[derive(sqlx::FromRow)]
 pub struct FullPerson {

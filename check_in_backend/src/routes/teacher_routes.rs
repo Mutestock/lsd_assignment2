@@ -1,4 +1,4 @@
-use crate::{entities::person, logic::teacher_handler};
+use crate::{entities::person, logic::handlers::teacher_handler};
 use person::teacher_server::Teacher;
 use tonic::{Request, Response, Status};
 
@@ -7,38 +7,39 @@ pub struct TeacherCon {}
 
 #[tonic::async_trait]
 impl Teacher for TeacherCon {
-    async fn generate_code(
+    async fn generate_code_and_start(
         &self,
-        request: Request<person::GenerateCodeRequest>,
-    ) -> Result<Response<person::GenerateCodeResponse>, Status> {
+        request: Request<person::GenerateCodeAndStartRequest>,
+    ) -> Result<Response<person::GenerateCodeAndStartResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
-            teacher_handler::generate_code(request.into_inner())
+            teacher_handler::generate_code_and_start(request.into_inner())
                 .await
                 .expect("Person Update failed"),
         ))
     }
-    async fn start_countdown(
+    async fn edit_countdown(
         &self,
-        request: Request<person::StartCountdownRequest>,
-    ) -> Result<Response<person::StartCountdownResponse>, Status> {
+        request: Request<person::EditCountdownRequest>,
+    ) -> Result<Response<person::EditCountdownResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
-            teacher_handler::start_countdown(request.into_inner())
+            teacher_handler::edit_countdown(request.into_inner())
                 .await
                 .expect("Person Update failed"),
         ))
     }
-    async fn extend_countdown(
+
+    async fn delete_code(
         &self,
-        request: Request<person::ExtendCountdownRequest>,
-    ) -> Result<Response<person::ExtendCountdownResponse>, Status> {
+        request: Request<person::DeleteCodeRequest>,
+    ) -> Result<Response<person::DeleteCodeResponse>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
         Ok(Response::new(
-            teacher_handler::extend_countdown(request.into_inner())
+            teacher_handler::delete_code(request.into_inner())
                 .await
                 .expect("Person Update failed"),
         ))

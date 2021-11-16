@@ -5,7 +5,7 @@ from logic.protogen import group_pb2
 from utils.config import CONFIG
 import grpc
 
-_CLIENT_CONFIG: str = CONFIG["clients"]["grpc"]["mini-proj"]
+_CLIENT_CONFIG: str = CONFIG["grpc"]
 
 
 def _create_stub():

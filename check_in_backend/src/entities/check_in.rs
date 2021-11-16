@@ -1,6 +1,6 @@
 use chrono::NaiveDateTime;
 
-#[derive(sqlx::FromRow)]
+#[derive(sqlx::FromRow, Clone)]
 pub struct CheckIn {
     pub id: i32,
     pub check_start: NaiveDateTime,

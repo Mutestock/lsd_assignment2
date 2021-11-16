@@ -4,9 +4,9 @@ tonic::include_proto!("student");
 
 #[derive(sqlx::FromRow)]
 pub struct FullPerson {
-    id: i32,
-    is_teacher: bool,
-    username: String,
+    pub id: i32,
+    pub is_teacher: bool,
+    pub username: String,
     pub pwd: String,
     salt: String,
 }

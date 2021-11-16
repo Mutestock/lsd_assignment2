@@ -40,10 +40,7 @@ pub async fn create_user(
     .bind(request.username)
     .bind(salty_pwd)
     .bind(str::from_utf8(&salt).expect("Could not cast salt to string"))
-    .execute(
-        &get_pg_pool()
-            .await?,
-    )
+    .execute(&get_pg_pool().await?)
     .await?;
 
     Ok(person::CreateUserResponse {

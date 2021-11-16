@@ -15,10 +15,7 @@ pub async fn create(
         "#,
     )
     .bind(request.name)
-    .execute(
-        &get_pg_pool()
-            .await?,
-    )
+    .execute(&get_pg_pool().await?)
     .await?;
 
     Ok(group::CreateGroupResponse {
@@ -35,10 +32,7 @@ pub async fn delete(
         "#,
     )
     .bind(request.group_id)
-    .execute(
-        &get_pg_pool()
-            .await?,
-    )
+    .execute(&get_pg_pool().await?)
     .await?;
 
     Ok(group::DeleteGroupResponse {
@@ -56,10 +50,7 @@ pub async fn remove_student_from_group(
     )
     .bind(request.student_id)
     .bind(request.group_id)
-    .execute(
-        &get_pg_pool()
-            .await?,
-    )
+    .execute(&get_pg_pool().await?)
     .await?;
 
     Ok(group::RemoveStudentFromGroupResponse {
@@ -78,10 +69,7 @@ pub async fn add_student_to_group(
     )
     .bind(request.student_id)
     .bind(request.group_id)
-    .execute(
-        &get_pg_pool()
-            .await?,
-    )
+    .execute(&get_pg_pool().await?)
     .await?;
 
     Ok(group::AddStudentToGroupResponse {

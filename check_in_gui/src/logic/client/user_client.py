@@ -5,7 +5,7 @@ from logic.protogen import user_pb2
 from utils.config import CONFIG
 import grpc
 
-_CLIENT_CONFIG: str = CONFIG["clients"]["grpc"]["mini-proj"]
+_CLIENT_CONFIG: str = CONFIG["grpc"]
 
 
 def _create_stub():
@@ -16,11 +16,11 @@ def _create_stub():
 
 
 # Returns false/true depending on login success
-def login(user) -> bool:
+def login(username, password) -> bool:
     return _create_stub().Login(
         user_pb2.LoginRequest(
-            username=user.username,
-            password=user.password,
+            username=username,
+            password=password,
         )
     )
 
@@ -30,6 +30,6 @@ def create_user(user) -> str:
         user_pb2.CreateUserRequest(
             username=user.username,
             password=user.password,
-            role=user.role,
+            is_teacher=user.is_teacher,
         )
     )

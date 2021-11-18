@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rstudent.proto\x12\x07student\".\n\x12\x43odeCheckInRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\"\x1d\n\x0fGetStatsRequest\x12\n\n\x02id\x18\x01 \x01(\x05\"\x17\n\x15GetAllStudentsRequest\")\n\x13\x43odeCheckInResponse\x12\x12\n\nchecked_in\x18\x01 \x01(\x08\"}\n\x10GetStatsResponse\x12\x32\n\tall_stats\x18\x01 \x03(\x0b\x32\x1f.student.GetStatsResponse.Stats\x1a\x35\n\x05Stats\x12\x1a\n\x12\x63hecked_in_on_time\x18\x01 \x01(\x08\x12\x10\n\x08\x64\x61tetime\x18\x02 \x01(\t\"s\n\x16GetAllStudentsResponse\x12\x33\n\x05studs\x18\x01 \x03(\x0b\x32$.student.GetAllStudentsResponse.Stud\x1a$\n\x04Stud\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x10\n\x08username\x18\x02 \x01(\t2\xed\x01\n\x07Student\x12J\n\x0b\x43odeCheckIn\x12\x1b.student.CodeCheckInRequest\x1a\x1c.student.CodeCheckInResponse\"\x00\x12\x41\n\x08GetStats\x12\x18.student.GetStatsRequest\x1a\x19.student.GetStatsResponse\"\x00\x12S\n\x0eGetAllStudents\x12\x1e.student.GetAllStudentsRequest\x1a\x1f.student.GetAllStudentsResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rstudent.proto\x12\x07student\"B\n\x12\x43odeCheckInRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\x12\x12\n\nstudent_id\x18\x03 \x01(\x05\"\x1d\n\x0fGetStatsRequest\x12\n\n\x02id\x18\x01 \x01(\x05\"\x17\n\x15GetAllStudentsRequest\")\n\x13\x43odeCheckInResponse\x12\x12\n\nchecked_in\x18\x01 \x01(\x08\"\xc1\x01\n\x10GetStatsResponse\x12\x32\n\tall_stats\x18\x01 \x03(\x0b\x32\x1f.student.GetStatsResponse.Stats\x1ay\n\x05Stats\x12\x1a\n\x12\x63hecked_in_on_time\x18\x01 \x01(\x08\x12\x17\n\x0fstart_date_time\x18\x02 \x01(\t\x12\x15\n\rend_date_time\x18\x03 \x01(\t\x12\x10\n\x08username\x18\x04 \x01(\t\x12\x12\n\nis_teacher\x18\x05 \x01(\x08\"\xa7\x01\n\x16GetAllStudentsResponse\x12\x33\n\x05studs\x18\x01 \x03(\x0b\x32$.student.GetAllStudentsResponse.Stud\x1aX\n\x04Stud\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x12\n\nis_teacher\x18\x02 \x01(\x08\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x0c\n\x04salt\x18\x05 \x01(\t2\xed\x01\n\x07Student\x12J\n\x0b\x43odeCheckIn\x12\x1b.student.CodeCheckInRequest\x1a\x1c.student.CodeCheckInResponse\"\x00\x12\x41\n\x08GetStats\x12\x18.student.GetStatsRequest\x1a\x19.student.GetStatsResponse\"\x00\x12S\n\x0eGetAllStudents\x12\x1e.student.GetAllStudentsRequest\x1a\x1f.student.GetAllStudentsResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -47,6 +47,13 @@ _CODECHECKINREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='student_id', full_name='student.CodeCheckInRequest.student_id', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -60,7 +67,7 @@ _CODECHECKINREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=26,
-  serialized_end=72,
+  serialized_end=92,
 )
 
 
@@ -91,8 +98,8 @@ _GETSTATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=74,
-  serialized_end=103,
+  serialized_start=94,
+  serialized_end=123,
 )
 
 
@@ -116,8 +123,8 @@ _GETALLSTUDENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=105,
-  serialized_end=128,
+  serialized_start=125,
+  serialized_end=148,
 )
 
 
@@ -148,8 +155,8 @@ _CODECHECKINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=130,
-  serialized_end=171,
+  serialized_start=150,
+  serialized_end=191,
 )
 
 
@@ -169,9 +176,30 @@ _GETSTATSRESPONSE_STATS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='datetime', full_name='student.GetStatsResponse.Stats.datetime', index=1,
+      name='start_date_time', full_name='student.GetStatsResponse.Stats.start_date_time', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='end_date_time', full_name='student.GetStatsResponse.Stats.end_date_time', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='username', full_name='student.GetStatsResponse.Stats.username', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_teacher', full_name='student.GetStatsResponse.Stats.is_teacher', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -187,8 +215,8 @@ _GETSTATSRESPONSE_STATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=245,
-  serialized_end=298,
+  serialized_start=266,
+  serialized_end=387,
 )
 
 _GETSTATSRESPONSE = _descriptor.Descriptor(
@@ -218,8 +246,8 @@ _GETSTATSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=173,
-  serialized_end=298,
+  serialized_start=194,
+  serialized_end=387,
 )
 
 
@@ -239,8 +267,29 @@ _GETALLSTUDENTSRESPONSE_STUD = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='username', full_name='student.GetAllStudentsResponse.Stud.username', index=1,
-      number=2, type=9, cpp_type=9, label=1,
+      name='is_teacher', full_name='student.GetAllStudentsResponse.Stud.is_teacher', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='username', full_name='student.GetAllStudentsResponse.Stud.username', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='password', full_name='student.GetAllStudentsResponse.Stud.password', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='salt', full_name='student.GetAllStudentsResponse.Stud.salt', index=4,
+      number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -257,8 +306,8 @@ _GETALLSTUDENTSRESPONSE_STUD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=379,
-  serialized_end=415,
+  serialized_start=469,
+  serialized_end=557,
 )
 
 _GETALLSTUDENTSRESPONSE = _descriptor.Descriptor(
@@ -288,8 +337,8 @@ _GETALLSTUDENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=300,
-  serialized_end=415,
+  serialized_start=390,
+  serialized_end=557,
 )
 
 _GETSTATSRESPONSE_STATS.containing_type = _GETSTATSRESPONSE
@@ -371,8 +420,8 @@ _STUDENT = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=418,
-  serialized_end=655,
+  serialized_start=560,
+  serialized_end=797,
   methods=[
   _descriptor.MethodDescriptor(
     name='CodeCheckIn',

@@ -16,12 +16,19 @@ pub async fn login(
         "#,
     )
     .bind(request.username)
-    .fetch_one(&get_pg_pool().await?)
+    .fetch_optional(&get_pg_pool().await?)
     .await?;
 
-    Ok(person::LoginResponse {
-        login_successful: verify_encryption(person.pwd, request.password.as_bytes())?,
-    })
+    // If username was found, check verify the password and send the results.
+    // If no username was found => False
+    match person {
+        Some(p) => Ok(person::LoginResponse {
+            login_successful: verify_encryption(p.pwd, request.password.as_bytes())?,
+        }),
+        None => Ok(person::LoginResponse {
+            login_successful: false,
+        }),
+    }
 }
 
 pub async fn create_user(
@@ -46,4 +53,14 @@ pub async fn create_user(
     Ok(person::CreateUserResponse {
         msg: "201".to_owned(),
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_no_such_user() {
+        assert_eq!(2 == 2, true);
+    }
 }

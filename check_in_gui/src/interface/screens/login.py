@@ -2,6 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.properties import StringProperty
+from logic.client import user_client
 
 
 class LoginScreen(Screen):
@@ -12,8 +13,10 @@ class Login(Widget):
     pwd = StringProperty()
     
     def login(self):
-        print(self.usr)
-        print(self.pwd)
+        logged_in = user_client.login(self.usr,self.pwd).login_successful
+        print("Logged in =")
+        print("false")
+        
         
     
     def on_usr_change(self, instance):

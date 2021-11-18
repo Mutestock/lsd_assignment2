@@ -19,23 +19,30 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rteacher.proto\x12\x07teacher\"!\n\x13GenerateCodeRequest\x12\n\n\x02ip\x18\x01 \x01(\t\"\'\n\x15StartCountdownRequest\x12\x0e\n\x06millis\x18\x01 \x01(\x05\"(\n\x16\x45xtendCountdownRequest\x12\x0e\n\x06millis\x18\x01 \x01(\x05\"$\n\x14GenerateCodeResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\"%\n\x16StartCountdownResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"&\n\x17\x45xtendCountdownResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\x85\x02\n\x07Teacher\x12M\n\x0cGenerateCode\x12\x1c.teacher.GenerateCodeRequest\x1a\x1d.teacher.GenerateCodeResponse\"\x00\x12S\n\x0eStartCountdown\x12\x1e.teacher.StartCountdownRequest\x1a\x1f.teacher.StartCountdownResponse\"\x00\x12V\n\x0f\x45xtendCountdown\x12\x1f.teacher.ExtendCountdownRequest\x1a .teacher.ExtendCountdownResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rteacher.proto\x12\x07teacher\"F\n\x1bGenerateCodeAndStartRequest\x12\x14\n\x0cip_encrypted\x18\x01 \x01(\t\x12\x11\n\tdate_time\x18\x02 \x01(\t\"7\n\x14\x45\x64itCountdownRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x11\n\tdate_time\x18\x02 \x01(\t\"!\n\x11\x44\x65leteCodeRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\",\n\x1cGenerateCodeAndStartResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\"$\n\x15\x45\x64itCountdownResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"!\n\x12\x44\x65leteCodeResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\x8b\x02\n\x07Teacher\x12\x65\n\x14GenerateCodeAndStart\x12$.teacher.GenerateCodeAndStartRequest\x1a%.teacher.GenerateCodeAndStartResponse\"\x00\x12P\n\rEditCountdown\x12\x1d.teacher.EditCountdownRequest\x1a\x1e.teacher.EditCountdownResponse\"\x00\x12G\n\nDeleteCode\x12\x1a.teacher.DeleteCodeRequest\x1a\x1b.teacher.DeleteCodeResponse\"\x00\x62\x06proto3'
 )
 
 
 
 
-_GENERATECODEREQUEST = _descriptor.Descriptor(
-  name='GenerateCodeRequest',
-  full_name='teacher.GenerateCodeRequest',
+_GENERATECODEANDSTARTREQUEST = _descriptor.Descriptor(
+  name='GenerateCodeAndStartRequest',
+  full_name='teacher.GenerateCodeAndStartRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ip', full_name='teacher.GenerateCodeRequest.ip', index=0,
+      name='ip_encrypted', full_name='teacher.GenerateCodeAndStartRequest.ip_encrypted', index=0,
       number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='date_time', full_name='teacher.GenerateCodeAndStartRequest.date_time', index=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -53,22 +60,29 @@ _GENERATECODEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=26,
-  serialized_end=59,
+  serialized_end=96,
 )
 
 
-_STARTCOUNTDOWNREQUEST = _descriptor.Descriptor(
-  name='StartCountdownRequest',
-  full_name='teacher.StartCountdownRequest',
+_EDITCOUNTDOWNREQUEST = _descriptor.Descriptor(
+  name='EditCountdownRequest',
+  full_name='teacher.EditCountdownRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='millis', full_name='teacher.StartCountdownRequest.millis', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      name='code', full_name='teacher.EditCountdownRequest.code', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='date_time', full_name='teacher.EditCountdownRequest.date_time', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -84,53 +98,21 @@ _STARTCOUNTDOWNREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=61,
-  serialized_end=100,
+  serialized_start=98,
+  serialized_end=153,
 )
 
 
-_EXTENDCOUNTDOWNREQUEST = _descriptor.Descriptor(
-  name='ExtendCountdownRequest',
-  full_name='teacher.ExtendCountdownRequest',
+_DELETECODEREQUEST = _descriptor.Descriptor(
+  name='DeleteCodeRequest',
+  full_name='teacher.DeleteCodeRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='millis', full_name='teacher.ExtendCountdownRequest.millis', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=102,
-  serialized_end=142,
-)
-
-
-_GENERATECODERESPONSE = _descriptor.Descriptor(
-  name='GenerateCodeResponse',
-  full_name='teacher.GenerateCodeResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='code', full_name='teacher.GenerateCodeResponse.code', index=0,
+      name='code', full_name='teacher.DeleteCodeRequest.code', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -148,21 +130,21 @@ _GENERATECODERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=144,
-  serialized_end=180,
+  serialized_start=155,
+  serialized_end=188,
 )
 
 
-_STARTCOUNTDOWNRESPONSE = _descriptor.Descriptor(
-  name='StartCountdownResponse',
-  full_name='teacher.StartCountdownResponse',
+_GENERATECODEANDSTARTRESPONSE = _descriptor.Descriptor(
+  name='GenerateCodeAndStartResponse',
+  full_name='teacher.GenerateCodeAndStartResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='msg', full_name='teacher.StartCountdownResponse.msg', index=0,
+      name='code', full_name='teacher.GenerateCodeAndStartResponse.code', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -180,21 +162,21 @@ _STARTCOUNTDOWNRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=182,
-  serialized_end=219,
+  serialized_start=190,
+  serialized_end=234,
 )
 
 
-_EXTENDCOUNTDOWNRESPONSE = _descriptor.Descriptor(
-  name='ExtendCountdownResponse',
-  full_name='teacher.ExtendCountdownResponse',
+_EDITCOUNTDOWNRESPONSE = _descriptor.Descriptor(
+  name='EditCountdownResponse',
+  full_name='teacher.EditCountdownResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='msg', full_name='teacher.ExtendCountdownResponse.msg', index=0,
+      name='msg', full_name='teacher.EditCountdownResponse.msg', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -212,59 +194,91 @@ _EXTENDCOUNTDOWNRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=221,
-  serialized_end=259,
+  serialized_start=236,
+  serialized_end=272,
 )
 
-DESCRIPTOR.message_types_by_name['GenerateCodeRequest'] = _GENERATECODEREQUEST
-DESCRIPTOR.message_types_by_name['StartCountdownRequest'] = _STARTCOUNTDOWNREQUEST
-DESCRIPTOR.message_types_by_name['ExtendCountdownRequest'] = _EXTENDCOUNTDOWNREQUEST
-DESCRIPTOR.message_types_by_name['GenerateCodeResponse'] = _GENERATECODERESPONSE
-DESCRIPTOR.message_types_by_name['StartCountdownResponse'] = _STARTCOUNTDOWNRESPONSE
-DESCRIPTOR.message_types_by_name['ExtendCountdownResponse'] = _EXTENDCOUNTDOWNRESPONSE
+
+_DELETECODERESPONSE = _descriptor.Descriptor(
+  name='DeleteCodeResponse',
+  full_name='teacher.DeleteCodeResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='teacher.DeleteCodeResponse.msg', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=274,
+  serialized_end=307,
+)
+
+DESCRIPTOR.message_types_by_name['GenerateCodeAndStartRequest'] = _GENERATECODEANDSTARTREQUEST
+DESCRIPTOR.message_types_by_name['EditCountdownRequest'] = _EDITCOUNTDOWNREQUEST
+DESCRIPTOR.message_types_by_name['DeleteCodeRequest'] = _DELETECODEREQUEST
+DESCRIPTOR.message_types_by_name['GenerateCodeAndStartResponse'] = _GENERATECODEANDSTARTRESPONSE
+DESCRIPTOR.message_types_by_name['EditCountdownResponse'] = _EDITCOUNTDOWNRESPONSE
+DESCRIPTOR.message_types_by_name['DeleteCodeResponse'] = _DELETECODERESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-GenerateCodeRequest = _reflection.GeneratedProtocolMessageType('GenerateCodeRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GENERATECODEREQUEST,
+GenerateCodeAndStartRequest = _reflection.GeneratedProtocolMessageType('GenerateCodeAndStartRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GENERATECODEANDSTARTREQUEST,
   '__module__' : 'teacher_pb2'
-  # @@protoc_insertion_point(class_scope:teacher.GenerateCodeRequest)
+  # @@protoc_insertion_point(class_scope:teacher.GenerateCodeAndStartRequest)
   })
-_sym_db.RegisterMessage(GenerateCodeRequest)
+_sym_db.RegisterMessage(GenerateCodeAndStartRequest)
 
-StartCountdownRequest = _reflection.GeneratedProtocolMessageType('StartCountdownRequest', (_message.Message,), {
-  'DESCRIPTOR' : _STARTCOUNTDOWNREQUEST,
+EditCountdownRequest = _reflection.GeneratedProtocolMessageType('EditCountdownRequest', (_message.Message,), {
+  'DESCRIPTOR' : _EDITCOUNTDOWNREQUEST,
   '__module__' : 'teacher_pb2'
-  # @@protoc_insertion_point(class_scope:teacher.StartCountdownRequest)
+  # @@protoc_insertion_point(class_scope:teacher.EditCountdownRequest)
   })
-_sym_db.RegisterMessage(StartCountdownRequest)
+_sym_db.RegisterMessage(EditCountdownRequest)
 
-ExtendCountdownRequest = _reflection.GeneratedProtocolMessageType('ExtendCountdownRequest', (_message.Message,), {
-  'DESCRIPTOR' : _EXTENDCOUNTDOWNREQUEST,
+DeleteCodeRequest = _reflection.GeneratedProtocolMessageType('DeleteCodeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DELETECODEREQUEST,
   '__module__' : 'teacher_pb2'
-  # @@protoc_insertion_point(class_scope:teacher.ExtendCountdownRequest)
+  # @@protoc_insertion_point(class_scope:teacher.DeleteCodeRequest)
   })
-_sym_db.RegisterMessage(ExtendCountdownRequest)
+_sym_db.RegisterMessage(DeleteCodeRequest)
 
-GenerateCodeResponse = _reflection.GeneratedProtocolMessageType('GenerateCodeResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GENERATECODERESPONSE,
+GenerateCodeAndStartResponse = _reflection.GeneratedProtocolMessageType('GenerateCodeAndStartResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GENERATECODEANDSTARTRESPONSE,
   '__module__' : 'teacher_pb2'
-  # @@protoc_insertion_point(class_scope:teacher.GenerateCodeResponse)
+  # @@protoc_insertion_point(class_scope:teacher.GenerateCodeAndStartResponse)
   })
-_sym_db.RegisterMessage(GenerateCodeResponse)
+_sym_db.RegisterMessage(GenerateCodeAndStartResponse)
 
-StartCountdownResponse = _reflection.GeneratedProtocolMessageType('StartCountdownResponse', (_message.Message,), {
-  'DESCRIPTOR' : _STARTCOUNTDOWNRESPONSE,
+EditCountdownResponse = _reflection.GeneratedProtocolMessageType('EditCountdownResponse', (_message.Message,), {
+  'DESCRIPTOR' : _EDITCOUNTDOWNRESPONSE,
   '__module__' : 'teacher_pb2'
-  # @@protoc_insertion_point(class_scope:teacher.StartCountdownResponse)
+  # @@protoc_insertion_point(class_scope:teacher.EditCountdownResponse)
   })
-_sym_db.RegisterMessage(StartCountdownResponse)
+_sym_db.RegisterMessage(EditCountdownResponse)
 
-ExtendCountdownResponse = _reflection.GeneratedProtocolMessageType('ExtendCountdownResponse', (_message.Message,), {
-  'DESCRIPTOR' : _EXTENDCOUNTDOWNRESPONSE,
+DeleteCodeResponse = _reflection.GeneratedProtocolMessageType('DeleteCodeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DELETECODERESPONSE,
   '__module__' : 'teacher_pb2'
-  # @@protoc_insertion_point(class_scope:teacher.ExtendCountdownResponse)
+  # @@protoc_insertion_point(class_scope:teacher.DeleteCodeResponse)
   })
-_sym_db.RegisterMessage(ExtendCountdownResponse)
+_sym_db.RegisterMessage(DeleteCodeResponse)
 
 
 
@@ -275,36 +289,36 @@ _TEACHER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=262,
-  serialized_end=523,
+  serialized_start=310,
+  serialized_end=577,
   methods=[
   _descriptor.MethodDescriptor(
-    name='GenerateCode',
-    full_name='teacher.Teacher.GenerateCode',
+    name='GenerateCodeAndStart',
+    full_name='teacher.Teacher.GenerateCodeAndStart',
     index=0,
     containing_service=None,
-    input_type=_GENERATECODEREQUEST,
-    output_type=_GENERATECODERESPONSE,
+    input_type=_GENERATECODEANDSTARTREQUEST,
+    output_type=_GENERATECODEANDSTARTRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='StartCountdown',
-    full_name='teacher.Teacher.StartCountdown',
+    name='EditCountdown',
+    full_name='teacher.Teacher.EditCountdown',
     index=1,
     containing_service=None,
-    input_type=_STARTCOUNTDOWNREQUEST,
-    output_type=_STARTCOUNTDOWNRESPONSE,
+    input_type=_EDITCOUNTDOWNREQUEST,
+    output_type=_EDITCOUNTDOWNRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='ExtendCountdown',
-    full_name='teacher.Teacher.ExtendCountdown',
+    name='DeleteCode',
+    full_name='teacher.Teacher.DeleteCode',
     index=2,
     containing_service=None,
-    input_type=_EXTENDCOUNTDOWNREQUEST,
-    output_type=_EXTENDCOUNTDOWNRESPONSE,
+    input_type=_DELETECODEREQUEST,
+    output_type=_DELETECODERESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

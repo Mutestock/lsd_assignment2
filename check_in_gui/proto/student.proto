@@ -10,6 +10,7 @@ service Student {
 message CodeCheckInRequest {
   string code = 1;
   string ip = 2;
+  int32 student_id = 3;
 }
 message GetStatsRequest { int32 id = 1; }
 message GetAllStudentsRequest {}
@@ -21,7 +22,10 @@ message CodeCheckInResponse { bool checked_in = 1; }
 message GetStatsResponse {
   message Stats {
     bool checked_in_on_time = 1;
-    string datetime = 2;
+    string start_date_time = 2;
+    string end_date_time = 3;
+    string username = 4;
+    bool is_teacher = 5;
   }
   repeated Stats all_stats = 1;
 }
@@ -29,7 +33,10 @@ message GetStatsResponse {
 message GetAllStudentsResponse {
   message Stud {
     int32 id = 1;
-    string username = 2;
+    bool is_teacher = 2;
+    string username = 3;
+    string password = 4;
+    string salt = 5;
   }
   repeated Stud studs = 1;
 }

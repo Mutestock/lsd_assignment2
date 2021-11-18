@@ -5,7 +5,7 @@ from logic.protogen import teacher_pb2
 from utils.config import CONFIG
 import grpc
 
-_CLIENT_CONFIG: str = CONFIG["clients"]["grpc"]["mini-proj"]
+_CLIENT_CONFIG: str = CONFIG["grpc"]
 
 
 def _create_stub():
@@ -16,26 +16,27 @@ def _create_stub():
 
 
 # Code gets generated from server
-def generate_code(ip) -> str:
-    return _create_stub.GenerateCode(
-        teacher_pb2.GenerateCodeRequest(
-            ip=ip
+def generate_code_and_start(ip, date_time) -> str:
+    return _create_stub.GenerateCodeAndStart(
+        teacher_pb2.GenerateCodeAndStartRequest(
+            ip_encrypted=ip,
+            date_time=date_time
         )
     )
 
 # Returns status code
-def start_countdown(millis) -> str:
-    return _create_stub.StartCountdown(
-        teacher_pb2.StartCountdownRequest(
-            millis = millis,
+def edit_countdown(code, date_time) -> str:
+    return _create_stub.DeleteCode(
+        teacher_pb2.DeleteCodeRequest(
+            code=code,
+            date_time=date_time
         )
     )   
 
-# In case the teacher needs to extend the time for the students
 # Returns status code
-def extend_countdown(millis) -> str:
-    return _create_stub.ExtendCountdown(
-        teacher_pb2.ExtendCountdownRequest(
-            millis = millis,
+def delete_code(code) -> str:
+    return _create_stub.DeleteCode(
+        teacher_pb2.DeleteCodeRequest(
+            code = code,
         )
     )   

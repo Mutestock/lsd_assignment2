@@ -14,39 +14,39 @@ class TeacherStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GenerateCode = channel.unary_unary(
-                '/teacher.Teacher/GenerateCode',
-                request_serializer=teacher__pb2.GenerateCodeRequest.SerializeToString,
-                response_deserializer=teacher__pb2.GenerateCodeResponse.FromString,
+        self.GenerateCodeAndStart = channel.unary_unary(
+                '/teacher.Teacher/GenerateCodeAndStart',
+                request_serializer=teacher__pb2.GenerateCodeAndStartRequest.SerializeToString,
+                response_deserializer=teacher__pb2.GenerateCodeAndStartResponse.FromString,
                 )
-        self.StartCountdown = channel.unary_unary(
-                '/teacher.Teacher/StartCountdown',
-                request_serializer=teacher__pb2.StartCountdownRequest.SerializeToString,
-                response_deserializer=teacher__pb2.StartCountdownResponse.FromString,
+        self.EditCountdown = channel.unary_unary(
+                '/teacher.Teacher/EditCountdown',
+                request_serializer=teacher__pb2.EditCountdownRequest.SerializeToString,
+                response_deserializer=teacher__pb2.EditCountdownResponse.FromString,
                 )
-        self.ExtendCountdown = channel.unary_unary(
-                '/teacher.Teacher/ExtendCountdown',
-                request_serializer=teacher__pb2.ExtendCountdownRequest.SerializeToString,
-                response_deserializer=teacher__pb2.ExtendCountdownResponse.FromString,
+        self.DeleteCode = channel.unary_unary(
+                '/teacher.Teacher/DeleteCode',
+                request_serializer=teacher__pb2.DeleteCodeRequest.SerializeToString,
+                response_deserializer=teacher__pb2.DeleteCodeResponse.FromString,
                 )
 
 
 class TeacherServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GenerateCode(self, request, context):
+    def GenerateCodeAndStart(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def StartCountdown(self, request, context):
+    def EditCountdown(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ExtendCountdown(self, request, context):
+    def DeleteCode(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -55,20 +55,20 @@ class TeacherServicer(object):
 
 def add_TeacherServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GenerateCode': grpc.unary_unary_rpc_method_handler(
-                    servicer.GenerateCode,
-                    request_deserializer=teacher__pb2.GenerateCodeRequest.FromString,
-                    response_serializer=teacher__pb2.GenerateCodeResponse.SerializeToString,
+            'GenerateCodeAndStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.GenerateCodeAndStart,
+                    request_deserializer=teacher__pb2.GenerateCodeAndStartRequest.FromString,
+                    response_serializer=teacher__pb2.GenerateCodeAndStartResponse.SerializeToString,
             ),
-            'StartCountdown': grpc.unary_unary_rpc_method_handler(
-                    servicer.StartCountdown,
-                    request_deserializer=teacher__pb2.StartCountdownRequest.FromString,
-                    response_serializer=teacher__pb2.StartCountdownResponse.SerializeToString,
+            'EditCountdown': grpc.unary_unary_rpc_method_handler(
+                    servicer.EditCountdown,
+                    request_deserializer=teacher__pb2.EditCountdownRequest.FromString,
+                    response_serializer=teacher__pb2.EditCountdownResponse.SerializeToString,
             ),
-            'ExtendCountdown': grpc.unary_unary_rpc_method_handler(
-                    servicer.ExtendCountdown,
-                    request_deserializer=teacher__pb2.ExtendCountdownRequest.FromString,
-                    response_serializer=teacher__pb2.ExtendCountdownResponse.SerializeToString,
+            'DeleteCode': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteCode,
+                    request_deserializer=teacher__pb2.DeleteCodeRequest.FromString,
+                    response_serializer=teacher__pb2.DeleteCodeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -81,7 +81,7 @@ class Teacher(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def GenerateCode(request,
+    def GenerateCodeAndStart(request,
             target,
             options=(),
             channel_credentials=None,
@@ -91,14 +91,14 @@ class Teacher(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/teacher.Teacher/GenerateCode',
-            teacher__pb2.GenerateCodeRequest.SerializeToString,
-            teacher__pb2.GenerateCodeResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/teacher.Teacher/GenerateCodeAndStart',
+            teacher__pb2.GenerateCodeAndStartRequest.SerializeToString,
+            teacher__pb2.GenerateCodeAndStartResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def StartCountdown(request,
+    def EditCountdown(request,
             target,
             options=(),
             channel_credentials=None,
@@ -108,14 +108,14 @@ class Teacher(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/teacher.Teacher/StartCountdown',
-            teacher__pb2.StartCountdownRequest.SerializeToString,
-            teacher__pb2.StartCountdownResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/teacher.Teacher/EditCountdown',
+            teacher__pb2.EditCountdownRequest.SerializeToString,
+            teacher__pb2.EditCountdownResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ExtendCountdown(request,
+    def DeleteCode(request,
             target,
             options=(),
             channel_credentials=None,
@@ -125,8 +125,8 @@ class Teacher(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/teacher.Teacher/ExtendCountdown',
-            teacher__pb2.ExtendCountdownRequest.SerializeToString,
-            teacher__pb2.ExtendCountdownResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/teacher.Teacher/DeleteCode',
+            teacher__pb2.DeleteCodeRequest.SerializeToString,
+            teacher__pb2.DeleteCodeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

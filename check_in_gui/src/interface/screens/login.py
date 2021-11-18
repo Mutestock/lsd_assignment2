@@ -4,27 +4,25 @@ from kivy.lang import Builder
 from kivy.properties import StringProperty
 
 
-Builder.load_file("interface/screens/login.kv")
 class LoginScreen(Screen):
     pass
-    #username_input = StringProperty("")
-    #password_input = StringProperty("")
-    #def buttonClicked(self, btn):
-    #    self.submit_login_button.text = "clicked!"
-    
-    
 
 class Login(Widget):
-    username_input = StringProperty("")
-    password_input = StringProperty("")
+    usr = StringProperty()
+    pwd = StringProperty()
     
-    def login(self, username_input, password_input):
-        print("boop")
-        print(self.username_input)
-        print(self.password_input)
-        print(username_input)
+    def login(self):
+        print(self.usr)
+        print(self.pwd)
+        
     
-    def on_text(self):
-        print("boop")
+    def on_usr_change(self, instance):
+        self.usr = instance.text
+    
+    def on_pwd_change(self, instance):
+        self.pwd = instance.text
+    
+        
+        
         
     

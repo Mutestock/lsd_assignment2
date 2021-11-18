@@ -20,15 +20,18 @@
                 rows:2
                 TextInput:
                     id: "userinput"
-                    text: root.username_input
                     multiline: False
                     focus: True
+                    on_text: root.on_usr_change(self)
+                    hint_text: 'Your username'
                 TextInput:
                     id: "password_input"
-                    text: root.password_input
                     password: True
                     multiline: False
+                    hint_text: 'Your password'
+                    on_text: root.on_pwd_change(self)
+
             Button:
                 id: "submit_login_button"
                 text: "Submit"
-                on_press: root.login(root.username_input, root.password_input)
+                on_press: root.login()

@@ -24,7 +24,7 @@ lazy_static="1.4.0"
 rust-argon2="0.8.3"
 rand="0.8.4"
 anyhow="1.0.45"
-
+figment="0.10.6"
 
 #serde
 serde = "1.0.130"

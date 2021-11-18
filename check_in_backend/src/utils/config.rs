@@ -9,6 +9,8 @@ lazy_static! {
         read_config_file(&CONFIG_PATH).expect("Config file could not be read at lazy static");
 }
 
+// Try https://docs.rs/figment/0.10.6/figment/
+
 #[derive(Deserialize)]
 pub struct Config {
     pub development: Development,

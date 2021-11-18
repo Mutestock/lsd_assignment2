@@ -11,14 +11,16 @@ class LoginScreen(Screen):
 class Login(Widget):
     usr = StringProperty()
     pwd = StringProperty()
+    banner = StringProperty("Please login")
     
     def login(self):
-        logged_in = user_client.login(self.usr,self.pwd).login_successful
-        print("Logged in =")
-        print("false")
+        if user_client.login(self.usr,self.pwd).login_successful:
+            print("login successful!")
+            
+        else:
+            self.banner = "Login failed. Check credentials"
         
         
-    
     def on_usr_change(self, instance):
         self.usr = instance.text
     

@@ -10,7 +10,7 @@
         cols:1
         rows:4
         Label:
-            text:'Please log in'
+            text: root.banner
             font_size: 20
             center_x: root.width/2
             top: root.top-50
@@ -30,8 +30,8 @@
                     multiline: False
                     hint_text: 'Your password'
                     on_text: root.on_pwd_change(self)
-
             Button:
                 id: "submit_login_button"
                 text: "Submit"
                 on_press: root.login()
+            

@@ -2,15 +2,55 @@
 <CreateUserScreen>
     UserCreation:
 
-<UserCreation>
+<UserCreation>:
     GridLayout:
         height: root.height
         width: root.width
         cols:1
-        rows:4
+        rows:2
         Label:
-            id:"This is the screen for creating users"
-            font_size=30
+            id:"create_user_label"
+            text:"Create New User (Demo only)"
+            font_size:30
             center_x:root.width/2
             top: root.top-50
+
+        BoxLayout:
+            GridLayout:
+                cols:1
+                rows:4
+                TextInput:
+                    id:"username_create_input"
+                    multiline: False
+                    focus: True
+                    on_text: root.on_usr_change(self)
+                    hint_text: "Username"
+                TextInput:
+                    id: "password_input"
+                    password: True
+                    multiline: False
+                    hint_text: 'Your password'
+                    on_text: root.on_pwd_change(self)
+                CheckBox:
+                    id: "is_teacher_checkbox"
+                    text: "User is a teacher(Demo Only)"
+                    active: root.on_teacher_checkbox_ticked()
+            GridLayout:
+                cols:1
+                rows:2
+                Button:
+                    id:"username_creation_button"
+                    text:"Submit"
+                    on_press: root.create_user()
+                Button:
+                    id:"cancel button"
+                    text:"Cancel"
+                    on_press: root.cancel()
+
+
+
             
+
+
+
+

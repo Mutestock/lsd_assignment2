@@ -3,7 +3,7 @@
     Login:
 
 
-<Login>
+<Login>:
     GridLayout:
         height: root.height
         width: root.width
@@ -17,7 +17,7 @@
         BoxLayout:
             GridLayout:
                 cols:1
-                rows:2
+                rows:3
                 TextInput:
                     id: "userinput"
                     multiline: False
@@ -30,8 +30,15 @@
                     multiline: False
                     hint_text: 'Your password'
                     on_text: root.on_pwd_change(self)
+                Button:
+                    id: "swap_to_create_user_button"
+                    text: "Create new user (demo only)"
+                    on_press: root.swap_to_create_user_screen()
+
+                
             Button:
                 id: "submit_login_button"
                 text: "Submit"
                 on_press: root.login()
+            
             

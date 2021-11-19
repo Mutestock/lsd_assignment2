@@ -17,6 +17,3 @@ class CheckInApp(App):
     def build(self):
         return CheckIn()
     
-
-if __name__ == '__main__':
-    CheckInApp().run()

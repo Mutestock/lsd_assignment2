@@ -14,6 +14,10 @@
             font_size: 20
             center_x: root.width/2
             top: root.top-50
+        Button:
+            id:"about_button_from_login"
+            text:"About"
+            on_press:root.swap_to_about()
         BoxLayout:
             GridLayout:
                 cols:1
@@ -34,11 +38,7 @@
                     id: "swap_to_create_user_button"
                     text: "Create new user (demo only)"
                     on_press: root.swap_to_create_user_screen()
-
-                
             Button:
                 id: "submit_login_button"
                 text: "Submit"
                 on_press: root.login()
-            
-            

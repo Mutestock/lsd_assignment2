@@ -1,0 +1,19 @@
+#:kivy 2.0.0
+<AboutScreen>
+    About:
+        
+<About>:
+    GridLayout:
+        height: root.height
+        width: root.width
+        cols: 1
+        rows: 2
+        Label:
+            id:"about_page_label"
+            text:"This is an about page from the login screen"
+            font_size: 30
+            center_x: root.width/2
+            top: root.top-50
+        Button:
+            id:"about_page_back_button"
+            text: "Back

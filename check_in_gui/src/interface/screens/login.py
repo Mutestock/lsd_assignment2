@@ -9,11 +9,7 @@ class LoginScreen(Screen):
         super(LoginScreen, self).__init__(**kwargs)
     
     
-
-    
-
 class Login(Widget):
-    
     def __init__(self,**kwargs):
         super(Login, self).__init__(**kwargs)
     
@@ -23,11 +19,9 @@ class Login(Widget):
     
     def login(self):
         if user_client.login(self.usr,self.pwd).login_successful:
-            print("login successful!")
-            
+            print("login successful!")    
         else:
             self.banner = "Login failed. Check credentials"
-        
         
     def on_usr_change(self, instance):
         self.usr = instance.text
@@ -37,5 +31,6 @@ class Login(Widget):
     
     def swap_to_create_user_screen(self):
         self.parent.parent.current="create_user"
-        print("derp")
         
+    def swap_to_about(self):
+        self.parent.parent.current="about"

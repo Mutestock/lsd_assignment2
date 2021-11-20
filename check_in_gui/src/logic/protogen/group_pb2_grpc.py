@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import group_pb2 as group__pb2
+import logic.protogen.group_pb2 as group__pb2
 
 
 class GroupStub(object):

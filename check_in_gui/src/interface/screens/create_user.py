@@ -30,7 +30,7 @@ class UserCreation(Widget):
         self.pwd = instance.text
     
     def cancel(self):
-        pass
+        self.parent.parent.current="login"
         
     def create_user(self):
         pass

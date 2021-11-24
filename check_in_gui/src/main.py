@@ -1,4 +1,7 @@
 from interface.check_in_main import CheckInApp
 
-if __name__ == '__main__':
+def main() -> None:
     CheckInApp().run()
+
+if __name__ == '__main__':
+    main()

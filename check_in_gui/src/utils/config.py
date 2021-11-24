@@ -14,4 +14,13 @@ _content: str = ""
 with open(_filename) as f:
     _content = f.read()
 
-CONFIG = toml.loads(_content)
+if os.getenv('CHECK_IN_GUI_DEV_MODE'):
+    print("********************************")
+    print("********************************")
+    print("CHECK IN GUI RUNNING IN DEV MODE")
+    print("********************************")
+    print("********************************")
+    CONFIG = toml.loads(_content)["dev"]
+else:
+    CONFIG = toml.loads(_content)["prod"]
+    

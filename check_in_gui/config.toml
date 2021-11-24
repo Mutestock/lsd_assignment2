@@ -1,3 +1,9 @@
-[grpc]
+[dev]
+[dev.grpc]
+host="127.0.0.1"
+port="30303"
+
+[prod]
+[prod.grpc]
 host="127.0.0.1"
 port="30303"

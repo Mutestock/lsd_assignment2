@@ -1,16 +1,16 @@
 #:kivy 2.0.0
-<StudentStatsScreen>
-    StudentStats:
+<SubmitCheckInScreen>
+    SubmitCheckIn:
 
-<StudentStats>
+<SubmitCheckIn>
     GridLayout:
         height: root.height
         width: root.width
         cols:1
         rows:4
         Label:
-            id:"student_stats_label_id"
-            text:"This is the stats screen"
+            id:"submit_check_in_label_id"
+            text:"This is the submit check in screen"
             font_size:30
             center_x:root.width/2
             top: root.top-50
@@ -19,6 +19,6 @@
                 cols:1
                 rows:4
                 Button:
-                    id:"back_to_student_dashboard_from_stats_button_id"
+                    id:"back_to_student_dashboard_from_check_in_button_id"
                     text:"back"
                     on_press:root.to_dashboard()

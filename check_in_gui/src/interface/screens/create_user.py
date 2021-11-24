@@ -21,7 +21,6 @@ class UserCreation(Widget):
     is_teacher = BooleanProperty(False)
 
     def on_teacher_checkbox_ticked(self):
-        self.is_teacher = not self.is_teacher
         print(self.is_teacher)
         print("hi")
 

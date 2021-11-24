@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nuser.proto\x12\x04user\"2\n\x0cLoginRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"K\n\x11\x43reateUserRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x12\n\nis_teacher\x18\x03 \x01(\x08\")\n\rLoginResponse\x12\x18\n\x10login_successful\x18\x01 \x01(\x08\"!\n\x12\x43reateUserResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2}\n\x04User\x12\x32\n\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponse\"\x00\x12\x41\n\nCreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\nuser.proto\x12\x04user\"2\n\x0cLoginRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"K\n\x11\x43reateUserRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x12\n\nis_teacher\x18\x03 \x01(\x08\"=\n\rLoginResponse\x12\x18\n\x10login_successful\x18\x01 \x01(\x08\x12\x12\n\nis_teacher\x18\x02 \x01(\x08\"!\n\x12\x43reateUserResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2}\n\x04User\x12\x32\n\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponse\"\x00\x12\x41\n\nCreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -125,6 +125,13 @@ _LOGINRESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_teacher', full_name='user.LoginResponse.is_teacher', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -138,7 +145,7 @@ _LOGINRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=149,
-  serialized_end=190,
+  serialized_end=210,
 )
 
 
@@ -169,8 +176,8 @@ _CREATEUSERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=192,
-  serialized_end=225,
+  serialized_start=212,
+  serialized_end=245,
 )
 
 DESCRIPTOR.message_types_by_name['LoginRequest'] = _LOGINREQUEST
@@ -216,8 +223,8 @@ _USER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=227,
-  serialized_end=352,
+  serialized_start=247,
+  serialized_end=372,
   methods=[
   _descriptor.MethodDescriptor(
     name='Login',

@@ -25,6 +25,8 @@ def login(username, password) -> bool:
     )
 
 # Returns a status code
+
+
 def create_user(user: User) -> str:
     return _create_stub().CreateUser(
         user_pb2.CreateUserRequest(

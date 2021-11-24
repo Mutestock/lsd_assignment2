@@ -6,6 +6,8 @@ from interface.screens.student_dashboard import StudentDashboardScreen
 from interface.screens.teacher_dashboard import TeacherDashboardScreen
 from interface.screens.create_user import CreateUserScreen
 from interface.screens.about import AboutScreen
+from interface.screens.submit_check_in import SubmitCheckInScreen
+from interface.screens.student_stats import StudentStatsScreen
 
 Builder.load_file("interface/check_in.kv")
 

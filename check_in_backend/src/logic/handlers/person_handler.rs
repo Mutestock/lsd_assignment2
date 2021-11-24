@@ -24,9 +24,11 @@ pub async fn login(
     match person {
         Some(p) => Ok(person::LoginResponse {
             login_successful: verify_encryption(p.pwd, request.password.as_bytes())?,
+            is_teacher: p.is_teacher,
         }),
         None => Ok(person::LoginResponse {
             login_successful: false,
+            is_teacher: false,
         }),
     }
 }
@@ -46,7 +48,7 @@ pub async fn create_user(
     .bind(request.is_teacher)
     .bind(request.username)
     .bind(salty_pwd)
-    .bind(format!("{:?}",&salt))
+    .bind(format!("{:?}", &salt))
     .execute(&get_pg_pool().await?)
     .await?;
 

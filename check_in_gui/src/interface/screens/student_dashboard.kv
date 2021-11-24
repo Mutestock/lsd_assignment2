@@ -1,16 +1,33 @@
 #:kivy 2.0.0
 <StudentDashboardScreen>
-    Dashboard:
+    StudentDashboard:
 
-<DashBoard>
+<StudentDashboard>
     GridLayout:
         height: root.height
         width: root.width
         cols:1
         rows:4
         Label:
-            id:"This is the student dashboard"
-            font_size=30
+            id:"student_dashboard_banner"
+            text:root.banner
+            font_size:30
             center_x:root.width/2
             top: root.top-50
+        BoxLayout:
+            GridLayout:
+                cols:1
+                rows:4
+                Button:
+                    id:"to_stats_button"
+                    text:"Stats"
+                    on_press:root.to_stats()
+                Button:
+                    id:"to_check_in_button"
+                    text:"Check In"
+                    on_press:root.to_check_in()
+                Button:
+                    id:"log_out_button"
+                    text:"Log out"
+                    on_press:root.logout()
             

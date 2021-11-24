@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
 
-Builder.load_file("interface/screens/submit_check_in.kv")
+Builder.load_file("interface/screens/student_screens/submit_check_in.kv")
 
 class SubmitCheckInScreen(Screen):
     pass

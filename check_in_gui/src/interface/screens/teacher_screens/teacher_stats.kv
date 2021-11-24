@@ -1,0 +1,24 @@
+#:kivy 2.0.0
+<TeacherStatsScreen>
+    TeacherStats:
+
+<TeacherStats>
+    GridLayout:
+        height: root.height
+        width: root.width
+        cols:1
+        rows:4
+        Label:
+            id:"teacher_stats_label_id"
+            text:"This is the stats screen"
+            font_size:30
+            center_x:root.width/2
+            top: root.top-50
+        BoxLayout:
+            GridLayout:
+                cols:1
+                rows:4
+                Button:
+                    id:"back_to_teacher_dashboard_from_stats_button_id"
+                    text:"back"
+                    on_press:root.to_dashboard()

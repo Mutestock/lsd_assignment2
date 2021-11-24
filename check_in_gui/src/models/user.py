@@ -21,3 +21,6 @@ class CurrentUser():
 
     def get_username(self):
         return self._instance.username
+    
+    
+current_user = User(None, None, None)

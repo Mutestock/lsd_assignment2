@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
 
-Builder.load_file("interface/screens/student_stats.kv")
+Builder.load_file("interface/screens/student_screens/student_stats.kv")
 
 class StudentStatsScreen(Screen):
     pass

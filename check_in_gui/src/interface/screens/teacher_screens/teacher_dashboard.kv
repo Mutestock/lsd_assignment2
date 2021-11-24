@@ -1,0 +1,29 @@
+#:kivy 2.0.0
+<TeacherDashboardScreen>
+    TeacherDashboard:
+
+<TeacherDashboard>
+    GridLayout:
+        height: root.height
+        width: root.width
+        cols:1
+        rows:4
+        Label:
+            id:"This is the teacher dashboard"
+            text:"Teacher Dashboard"
+            font_size:30
+            center_x:root.width/2
+            top: root.top-50
+        BoxLayout:
+            GridLayout:
+                cols:1
+                rows:4
+                Button:
+                    text:"Stats"
+                    on_press:root.to_stats()
+                Button:
+                    text:"Group Overview"
+                    on_press:root.to_group_overview()
+                Button:
+                    text:"Log out"
+                    on_press:root.logout()

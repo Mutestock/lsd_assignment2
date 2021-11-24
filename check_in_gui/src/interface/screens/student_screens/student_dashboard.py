@@ -5,7 +5,7 @@ from models.user import CurrentUser
 from kivy.properties import StringProperty
 
 
-Builder.load_file("interface/screens/student_dashboard.kv")
+Builder.load_file("interface/screens/student_screens/student_dashboard.kv")
 
 class StudentDashboardScreen(Screen):
     pass
@@ -14,7 +14,7 @@ class StudentDashboard(Widget):
     def __init__(self, **kwargs):
         super(StudentDashboard, self).__init__(**kwargs)
     
-    banner = StringProperty(f"{CurrentUser().get_username()}'s page")
+    banner = StringProperty(f"Student: {CurrentUser().get_username()}'s page")
     
     def to_stats(self):
         self.parent.parent.current="student_stats"

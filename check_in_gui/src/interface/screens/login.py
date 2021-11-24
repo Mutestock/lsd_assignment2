@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from logic.client import user_client
-from models.user import CurrentUser
+from models.user import CurrentUser, User
 
 
 class LoginScreen(Screen):
@@ -21,7 +21,8 @@ class Login(Widget):
     def login(self):
         response = user_client.login(self.usr, self.pwd)
         if response.login_successful:
-            CurrentUser().replace(self.usr, self.pwd, response.is_teacher)
+            global current_user
+            current_user = User(self.usr, self.pwd, response.is_teacher)
             if response.is_teacher:
                 self.parent.parent.current = "teacher_dashboard"
             else:

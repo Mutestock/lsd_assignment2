@@ -1,5 +1,9 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
+from kivy.lang.builder import Builder
+
+
+Builder.load_file("interface/screens/about.kv")
 
 class AboutScreen(Screen):
     def __init__(self, **kw):

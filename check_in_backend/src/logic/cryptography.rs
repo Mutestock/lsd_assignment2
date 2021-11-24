@@ -10,8 +10,7 @@ pub fn generate_salt() -> [u8; 8] {
 }
 
 pub fn hash_and_salt(item: String, salt: &[u8; 8]) -> Result<String, argon2::Error> {
-    let item = item.as_bytes();
-    argon2::hash_encoded(item, salt, &CONFIG.to_owned())
+    argon2::hash_encoded(item.as_bytes(), salt, &Config::default())
 }
 
 pub fn verify_encryption(hash: String, item_bytes: &[u8]) -> Result<bool, argon2::Error> {

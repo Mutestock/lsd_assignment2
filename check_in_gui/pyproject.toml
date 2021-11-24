@@ -12,6 +12,7 @@ requests = "^2.26.0"
 grpcio = "^1.41.1"
 grpcio-tools = "^1.41.1"
 toml = "^0.10.2"
+click = "^8.0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

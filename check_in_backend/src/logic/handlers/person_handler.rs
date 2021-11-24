@@ -46,7 +46,7 @@ pub async fn create_user(
     .bind(request.is_teacher)
     .bind(request.username)
     .bind(salty_pwd)
-    .bind(str::from_utf8(&salt).expect("Could not cast salt to string"))
+    .bind(format!("{:?}",&salt))
     .execute(&get_pg_pool().await?)
     .await?;
 

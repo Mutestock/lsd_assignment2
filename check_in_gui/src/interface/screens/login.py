@@ -19,6 +19,7 @@ class Login(Widget):
     
     def login(self):
         if user_client.login(self.usr,self.pwd).login_successful:
+            self.banner = "Login success."
             print("login successful!")    
         else:
             self.banner = "Login failed. Check credentials"

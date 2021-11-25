@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from logic.client import user_client
-from models.user import CurrentUser, User
+from models.user import current_user, User
 
 
 class LoginScreen(Screen):

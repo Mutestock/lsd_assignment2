@@ -3,7 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
 
 
-Builder.load_file("interface/screens/generate_check_in_screen.kv")
+Builder.load_file("interface/screens/teacher_screens/generate_check_in_screen.kv")
 
 class GenerateCheckInScreen(Screen):
     def __init__(self, **kw):

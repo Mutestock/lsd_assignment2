@@ -16,9 +16,7 @@ class CheckInApp(App):
     username = StringProperty()
     is_teacher = BooleanProperty()
     attached_groups = ListProperty()
-    
-    
-    
+    selected_group_name = StringProperty()
 
     def build(self):
         return CheckIn()

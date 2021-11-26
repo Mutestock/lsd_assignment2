@@ -8,6 +8,8 @@ service Group {
   rpc RemoveStudentFromGroup(RemoveStudentFromGroupRequest)
       returns (RemoveStudentFromGroupResponse) {}
   rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+  rpc GetAllGroupsByUsername(GetAllGroupsByUsernameRequest)
+      returns (GetAllGroupsByUsernameResponse) {}
 }
 
 // ##### Request #####
@@ -26,9 +28,12 @@ message RemoveStudentFromGroupRequest {
 }
 message DeleteGroupRequest { int32 group_id = 1; }
 
+message GetAllGroupsByUsernameRequest { string username = 1; }
+
 // ##### Response #####
 
 message CreateGroupResponse { string msg = 1; }
 message AddStudentToGroupResponse { string msg = 1; }
 message RemoveStudentFromGroupResponse { string msg = 1; }
 message DeleteGroupResponse { string msg = 1; }
+message GetAllGroupsByUsernameResponse { repeated string group_name = 1; }

@@ -38,11 +38,11 @@ pub async fn code_check_in(
             {
                 sqlx::query(
                     r#"
-                    INSERT INTO people_m2m_check_ins(people_id, check_in_id)
+                    INSERT INTO people_m2m_check_ins(people_name, check_in_id)
                     VALUES($1, $2)
                 "#,
                 )
-                .bind(person.id)
+                .bind(person.username)
                 .bind(v.id)
                 .execute(&get_pg_pool().await?)
                 .await?;
@@ -66,10 +66,10 @@ pub async fn get_stats(
     let stud = sqlx::query_as::<_, person::FullPerson>(
         r#"
         SELECT * FROM people
-        WHERE id = $1
+        WHERE username = $1
         "#,
     )
-    .bind(request.id)
+    .bind(&request.username)
     .fetch_one(&get_pg_pool().await?)
     .await?;
 
@@ -78,11 +78,11 @@ pub async fn get_stats(
         r#"
         SELECT * FROM check_ins ci
         INNER JOIN groups_m2m_check_ins gmci ON ci.id = gmci.check_in_id
-        INNER JOIN people p ON gmci.people_id = p.id
-        WHERE p.id = $1
+        INNER JOIN people p ON gmci.people_name = p.username
+        WHERE p.username = $1
         "#,
     )
-    .bind(request.id)
+    .bind(&request.username)
     .fetch_all(&get_pg_pool().await?)
     .await?;
 
@@ -90,11 +90,11 @@ pub async fn get_stats(
         r#"
         SELECT * FROM check_ins ci
         INNER JOIN people_m2m_check_ins pmci ON ci.id = pmci.check_in_id
-        INNER JOIN people p ON p.id = pmci.people_id
-        WHERE p.id=$1
+        INNER JOIN people p ON p.username = pmci.people_name
+        WHERE p.username=$1
         "#,
     )
-    .bind(request.id)
+    .bind(request.username)
     .fetch_all(&get_pg_pool().await?)
     .await?;
 

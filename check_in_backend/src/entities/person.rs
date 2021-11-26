@@ -4,7 +4,6 @@ tonic::include_proto!("student");
 
 #[derive(sqlx::FromRow)]
 pub struct FullPerson {
-    pub id: i32,
     pub is_teacher: bool,
     pub username: String,
     pub pwd: String,
@@ -16,9 +15,8 @@ impl FullPerson {
         people
             .into_iter()
             .map(|x| get_all_students_response::Stud {
-                id: x.id,
-                is_teacher: x.is_teacher,
                 username: x.username,
+                is_teacher: x.is_teacher,
                 password: x.pwd,
                 salt: x.salt,
             })

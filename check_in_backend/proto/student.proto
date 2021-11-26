@@ -12,7 +12,7 @@ message CodeCheckInRequest {
   string ip = 2;
   string username = 3;
 }
-message GetStatsRequest { int32 id = 1; }
+message GetStatsRequest { string username = 1; }
 message GetAllStudentsRequest {}
 
 // ##### Response #####
@@ -32,11 +32,10 @@ message GetStatsResponse {
 
 message GetAllStudentsResponse {
   message Stud {
-    int32 id = 1;
-    bool is_teacher = 2;
-    string username = 3;
-    string password = 4;
-    string salt = 5;
+    bool is_teacher = 1;
+    string username = 2;
+    string password = 3;
+    string salt = 4;
   }
   repeated Stud studs = 1;
 }

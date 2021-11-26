@@ -11,41 +11,14 @@ pub async fn create(
     sqlx::query(
         r#"
         INSERT INTO groups(name)
-        VALUES($1)
+        VALUES($1);
+
+        INSERT INTO people_m2m_groups(people_name, group_name)
+        VALUES($2, $1)
         "#,
     )
     .bind(&request.name)
-    .execute(&get_pg_pool().await?)
-    .await?;
-
-    let person = sqlx::query_as::<_, person::FullPerson>(
-        r#"
-        SELECT * FROM people
-        WHERE username = $1
-        "#,
-    )
     .bind(request.creator_username)
-    .fetch_one(&get_pg_pool().await?)
-    .await?;
-
-    let group = sqlx::query_as::<_, group::FullGroup>(
-        r#"
-        SELECT * from groups
-        WHERE name = $1
-        "#,
-    )
-    .bind(request.name)
-    .fetch_one(&get_pg_pool().await?)
-    .await?;
-
-    sqlx::query(
-        r#"
-        INSERT INTO people_m2m_groups(people_id, group_id)
-        VALUES($1, $2)
-        "#,
-    )
-    .bind(person.id)
-    .bind(group.id)
     .execute(&get_pg_pool().await?)
     .await?;
 
@@ -59,10 +32,11 @@ pub async fn delete(
 ) -> Result<group::DeleteGroupResponse, Box<dyn std::error::Error>> {
     sqlx::query(
         r#"
-        DELETE FROM groups WHERE id = $1
+        DELETE FROM groups WHERE name = $1;
+        DELETE FROM people_m2m_groups WHERE group_name = $1;
         "#,
     )
-    .bind(request.group_id)
+    .bind(request.group_name)
     .execute(&get_pg_pool().await?)
     .await?;
 
@@ -76,11 +50,11 @@ pub async fn remove_student_from_group(
 ) -> Result<group::RemoveStudentFromGroupResponse, Box<dyn std::error::Error>> {
     sqlx::query(
         r#"
-        DELETE FROM people_m2m_groups WHERE people.id = $1 AND groups.id = $2
+        DELETE FROM people_m2m_groups WHERE people_name = $1 AND groups_name = $2
         "#,
     )
-    .bind(request.student_id)
-    .bind(request.group_id)
+    .bind(request.student_name)
+    .bind(request.group_name)
     .execute(&get_pg_pool().await?)
     .await?;
 
@@ -98,12 +72,31 @@ pub async fn add_student_to_group(
         VALUES($1, $2)
         "#,
     )
-    .bind(request.student_id)
-    .bind(request.group_id)
+    .bind(request.student_name)
+    .bind(request.group_name)
     .execute(&get_pg_pool().await?)
     .await?;
 
     Ok(group::AddStudentToGroupResponse {
         msg: "201".to_owned(),
+    })
+}
+
+pub async fn get_all_groups_by_username(
+    request: group::GetAllGroupsByUsernameRequest,
+) -> Result<group::GetAllGroupsByUsernameResponse, Box<dyn std::error::Error>> {
+    let groups: Vec<group::FullGroup> = sqlx::query_as::<_, group::FullGroup>(
+        r#"
+        SELECT * FROM groups g
+        INNER JOIN people_m2m_groups pmg ON g.name = pmg.group_name
+        WHERE pmg.people_name = $1
+        "#,
+    )
+    .bind(request.username)
+    .fetch_all(&get_pg_pool().await?)
+    .await?;
+
+    Ok(group::GetAllGroupsByUsernameResponse {
+        group_names: groups.into_iter().map(|x| x.name).collect(),
     })
 }

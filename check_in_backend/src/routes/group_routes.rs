@@ -56,4 +56,17 @@ impl Group for GroupCon {
                 .expect("Person Update failed"),
         ))
     }
+
+    async fn get_all_groups_by_username(
+        &self,
+        request: Request<group::GetAllGroupsByUsernameRequest>,
+    ) -> Result<Response<group::GetAllGroupsByUsernameResponse>, Status> {
+        println!("Got a request from {:?}", request.remote_addr());
+
+        Ok(Response::new(
+            group_handler::get_all_groups_by_username(request.into_inner())
+                .await
+                .expect("Person Update failed"),
+        ))
+    }
 }

@@ -3,7 +3,7 @@
 use sqlx::Executor;
 
 use crate::connection::pg_connection::get_pg_pool;
-use crate::entities::group;
+use crate::entities::{group, person};
 
 pub async fn create(
     request: group::CreateGroupRequest,
@@ -14,7 +14,38 @@ pub async fn create(
         VALUES($1)
         "#,
     )
+    .bind(&request.name)
+    .execute(&get_pg_pool().await?)
+    .await?;
+
+    let person = sqlx::query_as::<_, person::FullPerson>(
+        r#"
+        SELECT * FROM people
+        WHERE username = $1
+        "#,
+    )
+    .bind(request.creator_username)
+    .fetch_one(&get_pg_pool().await?)
+    .await?;
+
+    let group = sqlx::query_as::<_, group::FullGroup>(
+        r#"
+        SELECT * from groups
+        WHERE name = $1
+        "#,
+    )
     .bind(request.name)
+    .fetch_one(&get_pg_pool().await?)
+    .await?;
+
+    sqlx::query(
+        r#"
+        INSERT INTO people_m2m_groups(people_id, group_id)
+        VALUES($1, $2)
+        "#,
+    )
+    .bind(person.id)
+    .bind(group.id)
     .execute(&get_pg_pool().await?)
     .await?;
 

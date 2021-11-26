@@ -16,10 +16,11 @@ def _create_stub():
 
 
 # Returns status code
-def create_group(name) -> str:
+def create_group(name, creator_username) -> str:
     return _create_stub().CreateGroup(
         group_pb2.CreateGroupRequest(
-            name=name
+            name=name,
+            creator_username=creator_username,
         )
     )
 

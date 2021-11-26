@@ -12,7 +12,10 @@ service Group {
 
 // ##### Request #####
 
-message CreateGroupRequest { string name = 1; }
+message CreateGroupRequest {
+  string name = 1;
+  string creator_username = 2;
+}
 message AddStudentToGroupRequest {
   int32 student_id = 1;
   int32 group_id = 2;

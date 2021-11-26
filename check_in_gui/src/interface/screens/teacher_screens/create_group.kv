@@ -1,16 +1,15 @@
 #:kivy 2.0.0
-<SubmitCheckInScreen>
-    SubmitCheckIn:
+<CreateGroupScreen>
+    CreateGroup:
 
-<SubmitCheckIn>
+<CreateGroup>
     GridLayout:
         height: root.height
         width: root.width
         cols:1
         rows:4
         Label:
-            id:"submit_check_in_label_id"
-            text:"This is the submit check in screen"
+            text:"Create Group"
             font_size:30
             center_x:root.width/2
             top: root.top-50
@@ -22,13 +21,12 @@
                 TextInput:
                     multiline: False
                     focus: True
-                    on_text: root.on_check_in_change(self)
-                    hint_text: "Insert check in code"
+                    on_text: root.on_group_name_change(self)
+                    hint_text: "Insert group name"
                 BoxLayout:
                     Button:
                         text:"Submit"
-                        on_press:root.submit_check_in()
+                        on_press:root.submit_group_name()
                     Button:
-                        id:"back_to_student_dashboard_from_check_in_button_id"
                         text:"back"
                         on_press:root.to_dashboard()                

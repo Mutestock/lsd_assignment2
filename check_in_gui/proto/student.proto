@@ -10,7 +10,7 @@ service Student {
 message CodeCheckInRequest {
   string code = 1;
   string ip = 2;
-  int32 student_id = 3;
+  string username = 3;
 }
 message GetStatsRequest { int32 id = 1; }
 message GetAllStudentsRequest {}

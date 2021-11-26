@@ -13,11 +13,12 @@ def _create_stub():
 
 
 # Returns true/false depending on check in success
-def code_check_in(code, ip) -> bool:
+def code_check_in(code, ip, username) -> bool:
     return _create_stub().CodeCheckIn(
         student_pb2.CodeCheckInRequest(
             code=code,
             ip=ip,
+            username=username
         )
     )
     

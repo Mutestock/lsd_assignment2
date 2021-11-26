@@ -9,3 +9,6 @@ from interface.screens.student_screens.student_stats import StudentStatsScreen
 
 from interface.screens.teacher_screens.teacher_dashboard import TeacherDashboardScreen
 from interface.screens.teacher_screens.teacher_stats import TeacherStatsScreen
+from interface.screens.teacher_screens.group_overview import GroupOverviewScreen
+from interface.screens.teacher_screens.create_group import CreateGroupScreen
+

@@ -20,6 +20,16 @@ pub async fn code_check_in(
     .fetch_optional(&get_pg_pool().await?)
     .await?;
 
+    let person = sqlx::query_as::<_, person::FullPerson>(
+        r#"
+        SELECT * FROM people
+        WHERE username = $1
+        "#,
+    )
+    .bind(request.username)
+    .fetch_one(&get_pg_pool().await?)
+    .await?;
+
     // Did the code exist?
     match code {
         Some(v) => {
@@ -32,7 +42,7 @@ pub async fn code_check_in(
                     VALUES($1, $2)
                 "#,
                 )
-                .bind(request.student_id)
+                .bind(person.id)
                 .bind(v.id)
                 .execute(&get_pg_pool().await?)
                 .await?;

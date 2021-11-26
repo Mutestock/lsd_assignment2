@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0bgroup.proto\x12\x05group\"\"\n\x12\x43reateGroupRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"@\n\x18\x41\x64\x64StudentToGroupRequest\x12\x12\n\nstudent_id\x18\x01 \x01(\x05\x12\x10\n\x08group_id\x18\x02 \x01(\x05\"E\n\x1dRemoveStudentFromGroupRequest\x12\x12\n\nstudent_id\x18\x01 \x01(\x05\x12\x10\n\x08group_id\x18\x02 \x01(\x05\"&\n\x12\x44\x65leteGroupRequest\x12\x10\n\x08group_id\x18\x01 \x01(\x05\"\"\n\x13\x43reateGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"(\n\x19\x41\x64\x64StudentToGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"-\n\x1eRemoveStudentFromGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\"\n\x13\x44\x65leteGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\xda\x02\n\x05Group\x12\x46\n\x0b\x43reateGroup\x12\x19.group.CreateGroupRequest\x1a\x1a.group.CreateGroupResponse\"\x00\x12X\n\x11\x41\x64\x64StudentToGroup\x12\x1f.group.AddStudentToGroupRequest\x1a .group.AddStudentToGroupResponse\"\x00\x12g\n\x16RemoveStudentFromGroup\x12$.group.RemoveStudentFromGroupRequest\x1a%.group.RemoveStudentFromGroupResponse\"\x00\x12\x46\n\x0b\x44\x65leteGroup\x12\x19.group.DeleteGroupRequest\x1a\x1a.group.DeleteGroupResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0bgroup.proto\x12\x05group\"<\n\x12\x43reateGroupRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x18\n\x10\x63reator_username\x18\x02 \x01(\t\"@\n\x18\x41\x64\x64StudentToGroupRequest\x12\x12\n\nstudent_id\x18\x01 \x01(\x05\x12\x10\n\x08group_id\x18\x02 \x01(\x05\"E\n\x1dRemoveStudentFromGroupRequest\x12\x12\n\nstudent_id\x18\x01 \x01(\x05\x12\x10\n\x08group_id\x18\x02 \x01(\x05\"&\n\x12\x44\x65leteGroupRequest\x12\x10\n\x08group_id\x18\x01 \x01(\x05\"\"\n\x13\x43reateGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"(\n\x19\x41\x64\x64StudentToGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"-\n\x1eRemoveStudentFromGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\"\n\x13\x44\x65leteGroupResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\xda\x02\n\x05Group\x12\x46\n\x0b\x43reateGroup\x12\x19.group.CreateGroupRequest\x1a\x1a.group.CreateGroupResponse\"\x00\x12X\n\x11\x41\x64\x64StudentToGroup\x12\x1f.group.AddStudentToGroupRequest\x1a .group.AddStudentToGroupResponse\"\x00\x12g\n\x16RemoveStudentFromGroup\x12$.group.RemoveStudentFromGroupRequest\x1a%.group.RemoveStudentFromGroupResponse\"\x00\x12\x46\n\x0b\x44\x65leteGroup\x12\x19.group.DeleteGroupRequest\x1a\x1a.group.DeleteGroupResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -40,6 +40,13 @@ _CREATEGROUPREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='creator_username', full_name='group.CreateGroupRequest.creator_username', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -53,7 +60,7 @@ _CREATEGROUPREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=22,
-  serialized_end=56,
+  serialized_end=82,
 )
 
 
@@ -91,8 +98,8 @@ _ADDSTUDENTTOGROUPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=58,
-  serialized_end=122,
+  serialized_start=84,
+  serialized_end=148,
 )
 
 
@@ -130,8 +137,8 @@ _REMOVESTUDENTFROMGROUPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=124,
-  serialized_end=193,
+  serialized_start=150,
+  serialized_end=219,
 )
 
 
@@ -162,8 +169,8 @@ _DELETEGROUPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=195,
-  serialized_end=233,
+  serialized_start=221,
+  serialized_end=259,
 )
 
 
@@ -194,8 +201,8 @@ _CREATEGROUPRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=235,
-  serialized_end=269,
+  serialized_start=261,
+  serialized_end=295,
 )
 
 
@@ -226,8 +233,8 @@ _ADDSTUDENTTOGROUPRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=271,
-  serialized_end=311,
+  serialized_start=297,
+  serialized_end=337,
 )
 
 
@@ -258,8 +265,8 @@ _REMOVESTUDENTFROMGROUPRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=313,
-  serialized_end=358,
+  serialized_start=339,
+  serialized_end=384,
 )
 
 
@@ -290,8 +297,8 @@ _DELETEGROUPRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=360,
-  serialized_end=394,
+  serialized_start=386,
+  serialized_end=420,
 )
 
 DESCRIPTOR.message_types_by_name['CreateGroupRequest'] = _CREATEGROUPREQUEST
@@ -369,8 +376,8 @@ _GROUP = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=397,
-  serialized_end=743,
+  serialized_start=423,
+  serialized_end=769,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateGroup',

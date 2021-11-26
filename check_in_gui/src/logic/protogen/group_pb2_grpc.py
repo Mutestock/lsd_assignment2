@@ -34,6 +34,11 @@ class GroupStub(object):
                 request_serializer=group__pb2.DeleteGroupRequest.SerializeToString,
                 response_deserializer=group__pb2.DeleteGroupResponse.FromString,
                 )
+        self.GetAllGroupsByUsername = channel.unary_unary(
+                '/group.Group/GetAllGroupsByUsername',
+                request_serializer=group__pb2.GetAllGroupsByUsernameRequest.SerializeToString,
+                response_deserializer=group__pb2.GetAllGroupsByUsernameResponse.FromString,
+                )
 
 
 class GroupServicer(object):
@@ -63,6 +68,12 @@ class GroupServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetAllGroupsByUsername(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GroupServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -85,6 +96,11 @@ def add_GroupServicer_to_server(servicer, server):
                     servicer.DeleteGroup,
                     request_deserializer=group__pb2.DeleteGroupRequest.FromString,
                     response_serializer=group__pb2.DeleteGroupResponse.SerializeToString,
+            ),
+            'GetAllGroupsByUsername': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllGroupsByUsername,
+                    request_deserializer=group__pb2.GetAllGroupsByUsernameRequest.FromString,
+                    response_serializer=group__pb2.GetAllGroupsByUsernameResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -161,5 +177,22 @@ class Group(object):
         return grpc.experimental.unary_unary(request, target, '/group.Group/DeleteGroup',
             group__pb2.DeleteGroupRequest.SerializeToString,
             group__pb2.DeleteGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAllGroupsByUsername(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/group.Group/GetAllGroupsByUsername',
+            group__pb2.GetAllGroupsByUsernameRequest.SerializeToString,
+            group__pb2.GetAllGroupsByUsernameResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

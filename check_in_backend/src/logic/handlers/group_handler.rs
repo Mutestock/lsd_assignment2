@@ -12,7 +12,14 @@ pub async fn create(
         r#"
         INSERT INTO groups(name)
         VALUES($1);
+        "#,
+    )
+    .bind(&request.name)
+    .execute(&get_pg_pool().await?)
+    .await?;
 
+    sqlx::query(
+        r#"
         INSERT INTO people_m2m_groups(people_name, group_name)
         VALUES($2, $1)
         "#,
@@ -33,6 +40,14 @@ pub async fn delete(
     sqlx::query(
         r#"
         DELETE FROM groups WHERE name = $1;
+        "#,
+    )
+    .bind(&request.group_name)
+    .execute(&get_pg_pool().await?)
+    .await?;
+
+    sqlx::query(
+        r#"
         DELETE FROM people_m2m_groups WHERE group_name = $1;
         "#,
     )
@@ -50,7 +65,8 @@ pub async fn remove_student_from_group(
 ) -> Result<group::RemoveStudentFromGroupResponse, Box<dyn std::error::Error>> {
     sqlx::query(
         r#"
-        DELETE FROM people_m2m_groups WHERE people_name = $1 AND groups_name = $2
+        DELETE FROM people_m2m_groups 
+        WHERE people_name = $1 AND groups_name = $2
         "#,
     )
     .bind(request.student_name)

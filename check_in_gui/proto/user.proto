@@ -23,6 +23,7 @@ message CreateUserRequest {
 
 // ##### Response #####
 
+
 message LoginResponse { 
     bool login_successful = 1; 
     bool is_teacher = 2;

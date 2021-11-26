@@ -8,22 +8,29 @@
         width: root.width
         cols:1
         rows:4
+        BoxLayout:
+            Button:
+                text:"Back"
+                on_press:root.to_dashboard()
+            Button:
+                text:"Create Group"
+                on_press:root.to_create_group()
+            Button:
+                text:"Sync"
+                on_press:root.sync()
         Label:
             text:"This is the group screen"
             font_size:30
             center_x:root.width/2
             top: root.top-50
-        BoxLayout:
-            GridLayout:
-                cols:1
-                rows:2
-                Button:
-                    text:"back"
-                    on_press:root.to_dashboard()
-                Button:
-                    text:"Create Group"
-                    on_press:root.to_create_group()
 
-<GroupButton>:
-    text: root.group_name
-    on_press: root.select_group()        
+<GroupPanel>:
+    orientation: 'vertical'
+
+<SelectGroup>
+    text: "Select"
+    on_press: root.select_group()    
+
+<DeleteGroup>
+    text: "Delete"
+    on_press: root.delete_group()

@@ -1,5 +1,3 @@
-
-  
 from logic.protogen import group_pb2_grpc
 from logic.protogen import group_pb2
 from utils.config import CONFIG
@@ -24,35 +22,37 @@ def create_group(name, creator_username) -> str:
         )
     )
 
+
 #  Returns status code
-def add_student_to_group(student_id, group_id):
+def add_student_to_group(student_name, group_name):
     return _create_stub().AddStudentToGroup(
         group_pb2.AddStudentToGroupRequest(
-            student_id=student_id,
-            group_id=group_id,
+            student_name=student_name,
+            group_name=group_name,
         )
     )
 
+
 # Returns status code
-def remove_student_from_group(student_id, group_id):
+def remove_student_from_group(student_name, group_name):
     return _create_stub().RemoveStudentFromGroup(
         group_pb2.RemoveStudentFromGroupRequest(
-            student_id=student_id,
-            group_id=group_id,
+            student_name=student_name,
+            group_name=group_name,
         )
     )
+
 
 # Returns status code
-def delete_group(group_id):
+def delete_group(group_name):
     return _create_stub().DeleteGroup(
         group_pb2.DeleteGroupRequest(
-            group_id=group_id,
+            group_name=group_name,
         )
     )
-    
-    
-    
 
 
-
-
+def get_all_groups_by_username(username):
+    return _create_stub().GetAllGroupsByUsername(
+        group_pb2.GetAllGroupsByUsernameRequest(username=username)
+    )

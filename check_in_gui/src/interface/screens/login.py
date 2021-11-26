@@ -2,12 +2,11 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from logic.client import user_client
-from models.user import current_user, User
+from models.user import User
 from kivy.app import App
 
 
 class LoginScreen(Screen):
-    
     def __init__(self, **kwargs):
         super(LoginScreen, self).__init__(**kwargs)
 

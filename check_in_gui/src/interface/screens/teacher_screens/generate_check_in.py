@@ -5,19 +5,15 @@ from kivy.lang.builder import Builder
 
 Builder.load_file("interface/screens/teacher_screens/generate_check_in_screen.kv")
 
+
 class GenerateCheckInScreen(Screen):
     def __init__(self, **kw):
         super(GenerateCheckInScreen, self).__init__(**kw)
-        
+
 
 class GenerateCheckIn(Widget):
-    
     def __init__(self, **kwargs):
-        super(GenerateCheckIn, self).__init__(**kwargs) 
-    
-    
+        super(GenerateCheckIn, self).__init__(**kwargs)
+
     def back(self):
-        self.parent.parent.current="login"
-
-
-        
+        self.parent.parent.current = "login"

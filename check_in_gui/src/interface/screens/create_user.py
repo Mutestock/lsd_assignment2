@@ -21,8 +21,7 @@ class UserCreation(Widget):
     is_teacher = BooleanProperty(False)
 
     def on_teacher_checkbox_ticked(self):
-        print(self.is_teacher)
-        print("hi")
+        self.is_teacher = not self.is_teacher
 
     def on_usr_change(self, instance):
         self.usr = instance.text
@@ -36,4 +35,3 @@ class UserCreation(Widget):
     def create_user(self):
         if self.usr and self.pwd:
             user_client.create_user(User(self.usr, self.pwd, self.is_teacher))
-

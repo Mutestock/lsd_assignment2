@@ -13,7 +13,13 @@
             font_size:30
             center_x:root.width/2
             top: root.top-50
-        
+        BoxLayout:
+            Button:
+                text:"Submit"
+                on_press:root.submit_group_name()
+            Button:
+                text:"back"
+                on_press:root.to_dashboard()
         BoxLayout:
             GridLayout:
                 cols:1
@@ -23,10 +29,4 @@
                     focus: True
                     on_text: root.on_group_name_change(self)
                     hint_text: "Insert group name"
-                BoxLayout:
-                    Button:
-                        text:"Submit"
-                        on_press:root.submit_group_name()
-                    Button:
-                        text:"back"
-                        on_press:root.to_dashboard()                
+                

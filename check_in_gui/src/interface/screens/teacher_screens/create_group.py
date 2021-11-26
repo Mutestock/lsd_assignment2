@@ -19,7 +19,7 @@ class CreateGroup(Widget):
     group_name_input = StringProperty()
 
     def to_dashboard(self):
-        self.parent.parent.current = "teacher_dashboard"
+        self.parent.parent.current = "group_overview"
 
     def on_group_name_change(self, instance):
         self.group_name_input = instance.text
@@ -28,5 +28,3 @@ class CreateGroup(Widget):
         app = App.get_running_app()
         msg = create_group(self.group_name_input, app.username)
         print(msg)
-        
-        

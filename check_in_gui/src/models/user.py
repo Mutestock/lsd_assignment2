@@ -1,15 +1,14 @@
-
 from dataclasses import dataclass
 
 
 @dataclass
-class User():
+class User:
     username: str
     password: str
     is_teacher: bool
 
 
-class CurrentUser():
+class CurrentUser:
     _instance: User = None
 
     def __init__(self):
@@ -21,6 +20,3 @@ class CurrentUser():
 
     def get_username(self):
         return self._instance.username
-    
-    
-current_user = User(None, None, None)

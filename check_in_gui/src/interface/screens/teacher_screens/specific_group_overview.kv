@@ -1,0 +1,34 @@
+#:kivy 2.0.0
+<SpecificGroupOverviewScreen>
+    SpecificGroupOverview:
+
+<SpecificGroupOverview>
+    GridLayout:
+        height: root.height
+        width: root.width
+        cols:1
+        rows:4
+        Label:
+            text:root.banner
+            font_size:30
+            center_x:root.width/2
+            top: root.top-50
+        BoxLayout:
+            GridLayout:
+                cols:2
+                rows:3
+                Button:
+                    text:"Attach students to group"
+                    on_press:root.to_add_student_to_group()
+                Button:
+                    text:"Detach students from group"
+                    on_press:root.to_group_overview()
+                Button:
+                    text:"Back"
+                    on_press:root.logout()
+                Button:
+                    text:"Sync"
+                    on_press:root.sync()
+                Button:
+                    text:"Generate Check In"
+                    on_press:root.to_generate_check_in()

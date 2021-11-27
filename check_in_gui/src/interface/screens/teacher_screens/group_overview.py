@@ -24,20 +24,28 @@ class GroupPanel(BoxLayout):
 
 
 class SelectGroup(Button):
-    def __init__(self, **kwargs):
+    group_name: str
+    
+    def __init__(self, group_name,**kwargs):
         super(SelectGroup, self).__init__(**kwargs)
+        self.group_name = group_name
 
     def select_group(self):
-        App.get_running_app().selected_group_name = self.text
-        print(self.text)
+        app = App.get_running_app()
+        app.selected_group_name = self.group_name
+        self.parent.parent.parent.parent.current = "login"
+        
 
 
 class DeleteGroup(Button):
-    def __init__(self, **kwargs):
+    group_name: str
+    
+    def __init__(self, group_name, **kwargs):
         super(DeleteGroup, self).__init__(**kwargs)
+        self.group_name = group_name
 
     def delete_group(self):
-        group_client.delete_group(App.get_running_app().group_name)
+        group_client.delete_group(self.group_name)
 
 
 class GroupOverview(Widget):
@@ -58,7 +66,7 @@ class GroupOverview(Widget):
         for group_name in app.attached_groups:
             print(group_name)
             panel = GroupPanel()
-            panel.add_widget(Label(text=group_name, background_color=[0.2,0.2,0.2,0.2]))
-            panel.add_widget(SelectGroup())
-            panel.add_widget(DeleteGroup())
+            panel.add_widget(Label(text=group_name))
+            panel.add_widget(SelectGroup(group_name=group_name))
+            panel.add_widget(DeleteGroup(group_name=group_name))
             self.add_widget(panel)

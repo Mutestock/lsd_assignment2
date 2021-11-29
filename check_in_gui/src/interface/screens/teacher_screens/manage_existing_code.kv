@@ -1,0 +1,47 @@
+#:kivy 2.0.0
+<ManageExistingCodeScreen>
+    ManageExistingCode:
+
+<ManageExistingCode>
+    GridLayout:
+        height: root.height
+        width: root.width
+        cols:1
+        rows:4
+        Label:
+            text: root.code_display
+            font_size:30
+            center_x:root.width/2
+            top: root.top-50
+        BoxLayout:
+            GridLayout:
+                cols:1
+                rows:5
+                TextInput:
+                    hint_text:"Insert the code you want to edit/delete. The input fields related to time aren't required if you're just deleting"
+                    on_text: root.on_code_change(self)
+                BoxLayout:
+                    TextInput:
+                        hint_text:"Deadline Hour"
+                        on_text: root.on_hour_input_change(self)
+                    TextInput:
+                        hint_text:"Deadline Minute"
+                        on_text: root.on_minute_input_change(self)
+                    TextInput:
+                        hint_text:"Deadline Day"
+                        on_text: root.on_day_input_change(self)
+                    TextInput:
+                        hint_text:"Deadline Month"
+                        on_text: root.on_month_input_change(self)
+                    TextInput:
+                        hint_text:"Deadline Year"
+                        on_text: root.on_year_input_change(self)
+                Button:
+                    text:"Delete Code"
+                    on_press:root.delete_code()
+                Button:
+                    text:"Update Countdown"
+                    on_press:root.update_countdown()
+                Button:
+                    text:"Back"
+                    on_press:root.back()

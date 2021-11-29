@@ -23,6 +23,6 @@ class TeacherDashboard(Widget):
 
     def to_group_overview(self):
         self.parent.parent.current = "group_overview"
-
+        
     def logout(self):
         self.parent.parent.current = "login"

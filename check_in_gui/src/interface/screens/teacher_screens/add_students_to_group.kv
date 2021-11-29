@@ -1,0 +1,29 @@
+#:kivy 2.0.0
+<AddStudentsToGroupScreen>
+    AddStudentsToGroup:
+
+<AddStudentsToGroup>
+    GridLayout:
+        height: root.height
+        width: root.width
+        cols:1
+        rows:4
+        BoxLayout:
+            Button:
+                text:"Back"
+                on_press:root.back()
+            Button:
+                text:"Sync"
+                on_press:root.sync()
+        Label:
+            text:"This is the group screen"
+            font_size:30
+            center_x:root.width/2
+            top: root.top-50
+
+<StudentPanel>:
+    orientation: 'vertical'
+
+<AddStudentButton>
+    text: "Add"
+    on_press: root.add_student()    

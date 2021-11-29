@@ -26,8 +26,8 @@ def generate_code_and_start(ip, date_time) -> str:
 
 # Returns status code
 def edit_countdown(code, date_time) -> str:
-    return _create_stub().DeleteCode(
-        teacher_pb2.DeleteCodeRequest(
+    return _create_stub().EditCountdown(
+        teacher_pb2.EditCountdownRequest(
             code=code,
             date_time=date_time
         )

@@ -16,19 +16,25 @@
         BoxLayout:
             GridLayout:
                 cols:2
-                rows:3
+                rows:4
                 Button:
                     text:"Attach students to group"
-                    on_press:root.to_add_student_to_group()
+                    on_press:root.to_attach_student_to_group()
                 Button:
                     text:"Detach students from group"
                     on_press:root.to_group_overview()
                 Button:
                     text:"Back"
-                    on_press:root.logout()
+                    on_press:root.back()
                 Button:
                     text:"Sync"
                     on_press:root.sync()
                 Button:
                     text:"Generate Check In"
                     on_press:root.to_generate_check_in()
+                Button:
+                    text:"Delete group"
+                    on_press:root.delete_group()
+                Button:
+                    text:"Manage existing code"
+                    on_press:root.to_manage_existing_code()

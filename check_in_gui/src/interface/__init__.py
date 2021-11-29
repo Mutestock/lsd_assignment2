@@ -13,5 +13,7 @@ from interface.screens.teacher_screens.group_overview import GroupOverviewScreen
 from interface.screens.teacher_screens.create_group import CreateGroupScreen
 from interface.screens.teacher_screens.specific_group_overview import SpecificGroupOverviewScreen
 from interface.screens.teacher_screens.generate_check_in import GenerateCheckInScreen
+from interface.screens.teacher_screens.add_students_to_group import AddStudentsToGroupScreen
+from interface.screens.teacher_screens.manage_existing_code import ManageExistingCodeScreen
 
 

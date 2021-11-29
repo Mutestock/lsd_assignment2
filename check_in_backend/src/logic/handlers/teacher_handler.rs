@@ -5,7 +5,7 @@ use sqlx::Executor;
 use crate::connection::pg_connection::get_pg_pool;
 use crate::entities::person;
 use crate::logic::cryptography::{generate_code, generate_salt, hash_and_salt};
-use crate::utils::time::get_current_time_and_add_request_millis;
+use crate::utils::time::{get_current_time_and_add_request_millis, parse_request_time};
 
 pub async fn generate_code_and_start(
     request: person::GenerateCodeAndStartRequest,
@@ -32,13 +32,16 @@ pub async fn generate_code_and_start(
 pub async fn edit_countdown(
     request: person::EditCountdownRequest,
 ) -> Result<person::EditCountdownResponse, Box<dyn std::error::Error>> {
+    println!("{} - {}", request.code, request.date_time);
+
+
     sqlx::query(
         r#"
         UPDATE check_ins SET check_end = $1
         WHERE code = $2
         "#,
     )
-    .bind(request.date_time)
+    .bind(parse_request_time(request.date_time.as_str()))
     .bind(request.code)
     .execute(&get_pg_pool().await?)
     .await?;
@@ -51,6 +54,9 @@ pub async fn edit_countdown(
 pub async fn delete_code(
     request: person::DeleteCodeRequest,
 ) -> Result<person::DeleteCodeResponse, Box<dyn std::error::Error>> {
+
+    println!("Boop from delete code: {}", request.code);
+
     sqlx::query(
         r#"
         DELETE FROM check_ins where code = $1

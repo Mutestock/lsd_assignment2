@@ -84,7 +84,7 @@ pub async fn add_student_to_group(
 ) -> Result<group::AddStudentToGroupResponse, Box<dyn std::error::Error>> {
     sqlx::query(
         r#"
-        INSERT INTO people_m2m_groups (people_id, groups_id)
+        INSERT INTO people_m2m_groups (people_name, group_name)
         VALUES($1, $2)
         "#,
     )

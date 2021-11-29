@@ -120,7 +120,7 @@ pub async fn get_all_students(
 ) -> Result<person::GetAllStudentsResponse, Box<dyn std::error::Error>> {
     let studs = sqlx::query_as::<_, person::FullPerson>(
         r#"
-        SELECT * FROM students
+        SELECT * FROM people where is_teacher = false
         "#,
     )
     .fetch_all(&get_pg_pool().await?)

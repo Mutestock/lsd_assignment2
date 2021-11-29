@@ -30,8 +30,6 @@ class AddStudentButton(Button):
         super(AddStudentButton, self).__init__(**kwargs)
         self.student_name = student_name
         
-        
-        
     def add_student(self):
         app = App.get_running_app()
         msg = group_client.add_student_to_group(self.student_name, app.selected_group_name).msg

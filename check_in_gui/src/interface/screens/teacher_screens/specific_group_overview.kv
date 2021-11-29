@@ -7,7 +7,7 @@
         height: root.height
         width: root.width
         cols:1
-        rows:4
+        rows:3
         Label:
             text:root.banner
             font_size:30
@@ -38,3 +38,17 @@
                 Button:
                     text:"Manage existing code"
                     on_press:root.to_manage_existing_code()
+        StudentGrid:
+<StudentGrid>
+    cols: 3
+    rows: 3
+    Button:
+        text:"sync"
+        on_press: root.sync()
+
+<DetachButton>
+    text:"Detach"
+    on_press: root.detach_student_from_group()
+
+
+

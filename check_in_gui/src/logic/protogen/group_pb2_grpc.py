@@ -39,6 +39,11 @@ class GroupStub(object):
                 request_serializer=group__pb2.GetAllGroupsByUsernameRequest.SerializeToString,
                 response_deserializer=group__pb2.GetAllGroupsByUsernameResponse.FromString,
                 )
+        self.GetAllStudentsByGroupName = channel.unary_unary(
+                '/group.Group/GetAllStudentsByGroupName',
+                request_serializer=group__pb2.GetAllStudentsByGroupNameRequest.SerializeToString,
+                response_deserializer=group__pb2.GetAllStudentsByGroupNameResponse.FromString,
+                )
 
 
 class GroupServicer(object):
@@ -74,6 +79,12 @@ class GroupServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetAllStudentsByGroupName(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GroupServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -101,6 +112,11 @@ def add_GroupServicer_to_server(servicer, server):
                     servicer.GetAllGroupsByUsername,
                     request_deserializer=group__pb2.GetAllGroupsByUsernameRequest.FromString,
                     response_serializer=group__pb2.GetAllGroupsByUsernameResponse.SerializeToString,
+            ),
+            'GetAllStudentsByGroupName': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllStudentsByGroupName,
+                    request_deserializer=group__pb2.GetAllStudentsByGroupNameRequest.FromString,
+                    response_serializer=group__pb2.GetAllStudentsByGroupNameResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -194,5 +210,22 @@ class Group(object):
         return grpc.experimental.unary_unary(request, target, '/group.Group/GetAllGroupsByUsername',
             group__pb2.GetAllGroupsByUsernameRequest.SerializeToString,
             group__pb2.GetAllGroupsByUsernameResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAllStudentsByGroupName(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/group.Group/GetAllStudentsByGroupName',
+            group__pb2.GetAllStudentsByGroupNameRequest.SerializeToString,
+            group__pb2.GetAllStudentsByGroupNameResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

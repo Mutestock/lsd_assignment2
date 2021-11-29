@@ -56,3 +56,9 @@ def get_all_groups_by_username(username):
     return _create_stub().GetAllGroupsByUsername(
         group_pb2.GetAllGroupsByUsernameRequest(username=username)
     )
+
+
+def get_all_students_by_group_name(group_name):
+    return _create_stub().GetAllStudentsByGroupName(
+        group_pb2.GetAllStudentsByGroupNameRequest(group_name=group_name)
+    )

@@ -10,6 +10,8 @@ service Group {
   rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
   rpc GetAllGroupsByUsername(GetAllGroupsByUsernameRequest)
       returns (GetAllGroupsByUsernameResponse) {}
+  rpc GetAllStudentsByGroupName(GetAllStudentsByGroupNameRequest)
+      returns (GetAllStudentsByGroupNameResponse) {}
 }
 
 // ##### Request #####
@@ -30,10 +32,24 @@ message DeleteGroupRequest { string group_name = 1; }
 
 message GetAllGroupsByUsernameRequest { string username = 1; }
 
+message GetAllStudentsByGroupNameRequest{ string group_name = 1;}
+
 // ##### Response #####
 
-message CreateGroupResponse { string msg = 1; }
+
+message CreateGroupResponse {
+  string msg = 1;
+}
 message AddStudentToGroupResponse { string msg = 1; }
 message RemoveStudentFromGroupResponse { string msg = 1; }
 message DeleteGroupResponse { string msg = 1; }
 message GetAllGroupsByUsernameResponse { repeated string group_names = 1; }
+message GetAllStudentsByGroupNameResponse {
+  message Stud {
+    bool is_teacher = 1;
+    string username = 2;
+    string password = 3;
+    string salt = 4;
+  }
+  repeated Stud studs = 1;
+}

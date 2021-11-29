@@ -66,7 +66,7 @@ pub async fn remove_student_from_group(
     sqlx::query(
         r#"
         DELETE FROM people_m2m_groups 
-        WHERE people_name = $1 AND groups_name = $2
+        WHERE people_name = $1 AND group_name = $2
         "#,
     )
     .bind(request.student_name)
@@ -114,5 +114,29 @@ pub async fn get_all_groups_by_username(
 
     Ok(group::GetAllGroupsByUsernameResponse {
         group_names: groups.into_iter().map(|x| x.name).collect(),
+    })
+}
+
+pub async fn get_all_students_by_group_name(
+    request: group::GetAllStudentsByGroupNameRequest,
+) -> Result<group::GetAllStudentsByGroupNameResponse, Box<dyn std::error::Error>>{
+    let studs: Vec<person::FullPerson> = sqlx::query_as::<_, person::FullPerson>(
+        r#"
+        SELECT * FROM people p
+        INNER JOIN people_m2m_groups pmg on p.username = pmg.people_name
+        WHERE pmg.group_name = $1
+        "#
+    )
+    .bind(request.group_name)
+    .fetch_all(&get_pg_pool().await?)
+    .await?;
+
+    Ok(group::GetAllStudentsByGroupNameResponse{
+        studs: studs.into_iter().map(|x| group::get_all_students_by_group_name_response::Stud{
+            username: x.username,
+            is_teacher: x.is_teacher,
+            password: String::from(""),
+            salt: String::from(""),
+        }).collect()
     })
 }

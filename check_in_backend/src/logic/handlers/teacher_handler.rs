@@ -32,9 +32,6 @@ pub async fn generate_code_and_start(
 pub async fn edit_countdown(
     request: person::EditCountdownRequest,
 ) -> Result<person::EditCountdownResponse, Box<dyn std::error::Error>> {
-    println!("{} - {}", request.code, request.date_time);
-
-
     sqlx::query(
         r#"
         UPDATE check_ins SET check_end = $1
@@ -54,9 +51,6 @@ pub async fn edit_countdown(
 pub async fn delete_code(
     request: person::DeleteCodeRequest,
 ) -> Result<person::DeleteCodeResponse, Box<dyn std::error::Error>> {
-
-    println!("Boop from delete code: {}", request.code);
-
     sqlx::query(
         r#"
         DELETE FROM check_ins where code = $1

@@ -1,10 +1,11 @@
 #![allow(dead_code, unused_variables, unused_imports)]
 
+
 use sqlx::Executor;
 
 use crate::connection::pg_connection::get_pg_pool;
 use crate::entities::{check_in::CheckIn, person};
-use crate::logic::cryptography::verify_encryption;
+use crate::logic::cryptography::{parse_string_salt_to_byte_vector, verify_encryption};
 use crate::utils::time::time_expired;
 
 pub async fn code_check_in(
@@ -34,8 +35,11 @@ pub async fn code_check_in(
     match code {
         Some(v) => {
             // Is the ip valid? Is it not too late?
-            if (verify_encryption(request.ip, v.ip_salt.as_bytes())?) && !time_expired(v.check_end)
+            println!("Inside check in, so the code was some - {}", v.code);
+            if (verify_encryption(request.ip, &parse_string_salt_to_byte_vector(v.ip_salt))?)
+                && !time_expired(v.check_end)
             {
+                println!("Encryption was verified...");
                 sqlx::query(
                     r#"
                     INSERT INTO people_m2m_check_ins(people_name, check_in_id)

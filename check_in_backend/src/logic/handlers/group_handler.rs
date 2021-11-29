@@ -124,7 +124,7 @@ pub async fn get_all_students_by_group_name(
         r#"
         SELECT * FROM people p
         INNER JOIN people_m2m_groups pmg on p.username = pmg.people_name
-        WHERE pmg.group_name = $1
+        WHERE pmg.group_name = $1 AND p.is_teacher = false
         "#
     )
     .bind(request.group_name)

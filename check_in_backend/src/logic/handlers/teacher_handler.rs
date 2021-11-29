@@ -1,7 +1,6 @@
 #![allow(dead_code, unused_variables, unused_imports)]
 
 use sqlx::Executor;
-use std::str;
 
 use crate::connection::pg_connection::get_pg_pool;
 use crate::entities::person;
@@ -17,15 +16,12 @@ pub async fn generate_code_and_start(
     sqlx::query(
         r#"
         INSERT INTO check_ins(check_end, allowed_ip, ip_salt, code)
-        VALUES($1, $2, $3)
+        VALUES($1, $2, $3, $4)
     "#,
     )
     .bind(get_current_time_and_add_request_millis(&request))
     .bind(hash_and_salt(request.ip_encrypted, &salt)?)
-    .bind(match str::from_utf8(&salt) {
-        Ok(v) => v,
-        Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
-    })
+    .bind(format!("{:?}", &salt))
     .bind(&code)
     .execute(&get_pg_pool().await?)
     .await?;

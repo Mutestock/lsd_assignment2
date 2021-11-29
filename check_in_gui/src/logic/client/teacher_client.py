@@ -17,7 +17,7 @@ def _create_stub():
 
 # Code gets generated from server
 def generate_code_and_start(ip, date_time) -> str:
-    return _create_stub.GenerateCodeAndStart(
+    return _create_stub().GenerateCodeAndStart(
         teacher_pb2.GenerateCodeAndStartRequest(
             ip_encrypted=ip,
             date_time=date_time
@@ -26,7 +26,7 @@ def generate_code_and_start(ip, date_time) -> str:
 
 # Returns status code
 def edit_countdown(code, date_time) -> str:
-    return _create_stub.DeleteCode(
+    return _create_stub().DeleteCode(
         teacher_pb2.DeleteCodeRequest(
             code=code,
             date_time=date_time
@@ -35,7 +35,7 @@ def edit_countdown(code, date_time) -> str:
 
 # Returns status code
 def delete_code(code) -> str:
-    return _create_stub.DeleteCode(
+    return _create_stub().DeleteCode(
         teacher_pb2.DeleteCodeRequest(
             code = code,
         )

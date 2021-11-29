@@ -4,8 +4,7 @@ from kivy.lang.builder import Builder
 from kivy.properties import StringProperty
 from kivy.app import App
 
-from models.user import CurrentUser
-from logic import group_client
+from logic.client import group_client
 
 
 Builder.load_file("interface/screens/teacher_screens/specific_group_overview.kv")

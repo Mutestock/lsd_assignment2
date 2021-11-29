@@ -33,7 +33,7 @@ class SelectGroup(Button):
     def select_group(self):
         app = App.get_running_app()
         app.selected_group_name = self.group_name
-        self.parent.parent.parent.parent.current = "login"
+        self.parent.parent.parent.parent.current = "specific_group_overview"
         
 
 

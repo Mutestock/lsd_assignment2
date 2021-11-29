@@ -11,4 +11,7 @@ from interface.screens.teacher_screens.teacher_dashboard import TeacherDashboard
 from interface.screens.teacher_screens.teacher_stats import TeacherStatsScreen
 from interface.screens.teacher_screens.group_overview import GroupOverviewScreen
 from interface.screens.teacher_screens.create_group import CreateGroupScreen
+from interface.screens.teacher_screens.specific_group_overview import SpecificGroupOverviewScreen
+from interface.screens.teacher_screens.generate_check_in import GenerateCheckInScreen
+
 

@@ -23,10 +23,10 @@ def code_check_in(code, ip, username) -> bool:
     )
     
 
-def get_stats(id):
+def get_stats(username):
     return _create_stub().GetStats(
         student_pb2.GetStatsRequest(
-            id=id
+            username=username
         )
     )
     

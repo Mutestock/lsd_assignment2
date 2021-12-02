@@ -2,6 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
 from kivy.properties import StringProperty
+from kivy.app import App
 import datetime
 
 from logic.client import teacher_client
@@ -45,12 +46,12 @@ class GenerateCheckIn(Widget):
             )
         
             if self.date_time_values_are_legal(parsed_datetime):
-                code = teacher_client.generate_code_and_start(get_public_ip(), str(parsed_datetime)).code
+                code = teacher_client.generate_code_and_start(get_public_ip(), str(parsed_datetime), App.get_running_app().selected_group_name).code
                 self.code_display = f"Code: {code}\nDeadline: {str(parsed_datetime)}"
             else:
-                print("Specified date was earlier than now or the values were otherwise illegal")
-            
+                self.code_display = "Specified date was earlier than now or the values were otherwise illegal"
         except Exception as e:
+            self.code_display = "Unhandled error. Please contact dev and inform him that he's stupid"
             print(e)
         
 

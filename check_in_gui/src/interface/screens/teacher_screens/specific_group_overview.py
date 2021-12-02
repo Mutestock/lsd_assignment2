@@ -27,7 +27,6 @@ class DetachButton(Button):
     
     def detach_student_from_group(self):
         app = App.get_running_app()
-        print(self.usr)
         group_client.remove_student_from_group(self.usr, app.selected_group_name)
     
 
@@ -54,7 +53,6 @@ class StudentGrid(GridLayout):
         grid = GridLayout(cols=1,row_force_default=True, row_default_height=panel.height/2)
         panel.add_widget(Button(text="sync", on_press=self.sync, height=panel.height/6))
         for stud in group_client.get_all_students_by_group_name(app.selected_group_name).studs:
-            print("Username=" + stud.username)
             sub_grid = SubGrid(usr=stud.username)
             grid.add_widget(sub_grid)
             
@@ -81,7 +79,6 @@ class SpecificGroupOverview(Widget):
     def delete_group(self):
         app = App.get_running_app()
         msg = group_client.delete_group(app.selected_group_name)
-        print(msg)
         self.parent.parent.current = "group_overview"
         app.selected_group_name = ""
         

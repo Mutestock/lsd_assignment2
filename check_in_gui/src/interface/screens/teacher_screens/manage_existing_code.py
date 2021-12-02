@@ -46,18 +46,15 @@ class ManageExistingCode(Widget):
             if self.date_time_values_are_legal(parsed_datetime):
                     msg = teacher_client.edit_countdown(self.code_input, str(parsed_datetime)).msg
                     self.code_display = f"Code changed"
-                    print(msg)
             else:
-                print("Specified date was earlier than now or the values were otherwise illegal")
-            
+                self.code_display = "Specified date was earlier than now or the values were otherwise illegal"
         except Exception as e:
+            self.code_display = "Unhandled error. Please contact dev and inform him that he's stupid"
             print(e)
             
     
     def delete_code(self):
-        print(self.code_input)
         msg = teacher_client.delete_code(self.code_input)
-        print(msg)
         
     def back(self):
         self.parent.parent.current = "specific_group_overview"

@@ -31,4 +31,3 @@ class CreateGroup(Widget):
         else:
             app = App.get_running_app()
             msg = create_group(self.group_name_input, app.username)
-            print(msg)

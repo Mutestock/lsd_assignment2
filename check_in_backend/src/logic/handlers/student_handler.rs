@@ -45,7 +45,6 @@ pub async fn code_check_in(
                 &parse_string_salt_to_byte_vector(v.ip_salt),
             )) && !time_expired(v.check_end)
             {
-                println!("Encryption was verified...");
                 sqlx::query(
                     r#"
                     INSERT INTO people_m2m_check_ins(people_name, check_in_id)
@@ -95,7 +94,9 @@ pub async fn get_stats(
         r#"
         SELECT * FROM check_ins ci
         INNER JOIN groups_m2m_check_ins gmci ON ci.id = gmci.check_in_id
-        INNER JOIN people p ON gmci.people_name = p.username
+        INNER JOIN groups g ON g.name = gmci.group_name
+        INNER JOIN people_m2m_groups pmg ON pmg.group_name = g.name
+        INNER JOIN people p ON pmg.people_name = p.username
         WHERE p.username = $1
         "#,
     )

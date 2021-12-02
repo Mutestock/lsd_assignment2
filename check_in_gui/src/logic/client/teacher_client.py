@@ -16,11 +16,12 @@ def _create_stub():
 
 
 # Code gets generated from server
-def generate_code_and_start(ip, date_time) -> str:
+def generate_code_and_start(ip, date_time, group_name) -> str:
     return _create_stub().GenerateCodeAndStart(
         teacher_pb2.GenerateCodeAndStartRequest(
             ip_encrypted=ip,
-            date_time=date_time
+            date_time=date_time,
+            group_name=group_name
         )
     )
 

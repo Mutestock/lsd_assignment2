@@ -27,14 +27,11 @@ class SubmitCheckIn(Widget):
         self.check_in_input = instance.text
 
     def submit_check_in(self):
+        self.banner = "Please hold..."
         app = App.get_running_app()
-        print(app.username)
         checked_in = code_check_in(
             self.check_in_input, get_public_ip(), app.username).checked_in
-        print(checked_in)
         if checked_in:
             self.banner = "Success!"
-            print("Succesfully checked in")
         else:
             self.banner = "Failure. Check code"
-            print("Failed to check in")

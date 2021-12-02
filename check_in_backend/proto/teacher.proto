@@ -14,6 +14,7 @@ service Teacher {
 message GenerateCodeAndStartRequest {
   string ip_encrypted = 1;
   string date_time = 2;
+  string group_name = 3;
 }
 message EditCountdownRequest {
   string code = 1;

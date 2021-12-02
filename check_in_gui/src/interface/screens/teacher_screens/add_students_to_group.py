@@ -29,7 +29,6 @@ class AddStudentGrid(GridLayout):
         grid = GridLayout(cols=1,row_force_default=True, row_default_height=panel.height/2)
         panel.add_widget(Button(text="sync", on_press=self.sync, height=panel.height/6))
         for stud in student_client.get_all_students().studs:
-            print(stud.username)
             sub_grid = GridLayout(cols=2)
             sub_grid.add_widget(Label(text=stud.username))
             sub_grid.add_widget(AddStudentButton(student_name=stud.username))
@@ -47,8 +46,7 @@ class AddStudentButton(Button):
         
     def add_student(self):
         app = App.get_running_app()
-        msg = group_client.add_student_to_group(self.student_name, app.selected_group_name).msg
-        print(msg)
+        group_client.add_student_to_group(self.student_name, app.selected_group_name)
         
 class AddStudentsToGroup(Widget):
     def __init__(self, **kwargs):

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rteacher.proto\x12\x07teacher\"F\n\x1bGenerateCodeAndStartRequest\x12\x14\n\x0cip_encrypted\x18\x01 \x01(\t\x12\x11\n\tdate_time\x18\x02 \x01(\t\"7\n\x14\x45\x64itCountdownRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x11\n\tdate_time\x18\x02 \x01(\t\"!\n\x11\x44\x65leteCodeRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\",\n\x1cGenerateCodeAndStartResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\"$\n\x15\x45\x64itCountdownResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"!\n\x12\x44\x65leteCodeResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\x8b\x02\n\x07Teacher\x12\x65\n\x14GenerateCodeAndStart\x12$.teacher.GenerateCodeAndStartRequest\x1a%.teacher.GenerateCodeAndStartResponse\"\x00\x12P\n\rEditCountdown\x12\x1d.teacher.EditCountdownRequest\x1a\x1e.teacher.EditCountdownResponse\"\x00\x12G\n\nDeleteCode\x12\x1a.teacher.DeleteCodeRequest\x1a\x1b.teacher.DeleteCodeResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rteacher.proto\x12\x07teacher\"Z\n\x1bGenerateCodeAndStartRequest\x12\x14\n\x0cip_encrypted\x18\x01 \x01(\t\x12\x11\n\tdate_time\x18\x02 \x01(\t\x12\x12\n\ngroup_name\x18\x03 \x01(\t\"7\n\x14\x45\x64itCountdownRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x11\n\tdate_time\x18\x02 \x01(\t\"!\n\x11\x44\x65leteCodeRequest\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\",\n\x1cGenerateCodeAndStartResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\"$\n\x15\x45\x64itCountdownResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"!\n\x12\x44\x65leteCodeResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\x8b\x02\n\x07Teacher\x12\x65\n\x14GenerateCodeAndStart\x12$.teacher.GenerateCodeAndStartRequest\x1a%.teacher.GenerateCodeAndStartResponse\"\x00\x12P\n\rEditCountdown\x12\x1d.teacher.EditCountdownRequest\x1a\x1e.teacher.EditCountdownResponse\"\x00\x12G\n\nDeleteCode\x12\x1a.teacher.DeleteCodeRequest\x1a\x1b.teacher.DeleteCodeResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -47,6 +47,13 @@ _GENERATECODEANDSTARTREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='group_name', full_name='teacher.GenerateCodeAndStartRequest.group_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -60,7 +67,7 @@ _GENERATECODEANDSTARTREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=26,
-  serialized_end=96,
+  serialized_end=116,
 )
 
 
@@ -98,8 +105,8 @@ _EDITCOUNTDOWNREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=98,
-  serialized_end=153,
+  serialized_start=118,
+  serialized_end=173,
 )
 
 
@@ -130,8 +137,8 @@ _DELETECODEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=155,
-  serialized_end=188,
+  serialized_start=175,
+  serialized_end=208,
 )
 
 
@@ -162,8 +169,8 @@ _GENERATECODEANDSTARTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=190,
-  serialized_end=234,
+  serialized_start=210,
+  serialized_end=254,
 )
 
 
@@ -194,8 +201,8 @@ _EDITCOUNTDOWNRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=236,
-  serialized_end=272,
+  serialized_start=256,
+  serialized_end=292,
 )
 
 
@@ -226,8 +233,8 @@ _DELETECODERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=274,
-  serialized_end=307,
+  serialized_start=294,
+  serialized_end=327,
 )
 
 DESCRIPTOR.message_types_by_name['GenerateCodeAndStartRequest'] = _GENERATECODEANDSTARTREQUEST
@@ -289,8 +296,8 @@ _TEACHER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=310,
-  serialized_end=577,
+  serialized_start=330,
+  serialized_end=597,
   methods=[
   _descriptor.MethodDescriptor(
     name='GenerateCodeAndStart',

@@ -33,7 +33,6 @@ class GroupPanel(GridLayout):
         panel.add_widget(Button(text="sync", on_press=self.sync, size_hint_y=None, height=self.height/2))
         grid = GridLayout(cols=1,row_force_default=True, row_default_height=panel.height/2)
         for group_name in app.attached_groups:
-            print(group_name)
             sub_grid = GridLayout(cols=3)
             sub_grid.add_widget(Label(text=group_name))
             sub_grid.add_widget(SelectGroup(group_name=group_name))
@@ -53,7 +52,6 @@ class SelectGroup(Button):
         self.group_name = group_name
 
     def select_group(self):
-        print("boop")
         app = App.get_running_app()
         app.selected_group_name = self.group_name
         self.parent.parent.parent.parent.parent.parent.parent.parent.current = "specific_group_overview"

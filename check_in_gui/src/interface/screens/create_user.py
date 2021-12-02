@@ -36,9 +36,7 @@ class UserCreation(Widget):
     def create_user(self):
         if self.usr and self.pwd:
             msg = user_client.create_user(User(self.usr, self.pwd, self.is_teacher)).msg
-            print(msg)
             if msg == "Err":
-                print("boop")
                 self.banner = "Some Error Occurred. Check duplicate username"
             else:
                 self.banner = f"User {self.usr} created"

@@ -3,7 +3,7 @@
 use sqlx::Executor;
 
 use crate::connection::pg_connection::get_pg_pool;
-use crate::entities::person;
+use crate::entities::{person, check_in};
 use crate::logic::cryptography::{generate_code, generate_salt, hash_and_salt};
 use crate::utils::time::{get_current_time_and_add_request_millis, parse_request_time};
 
@@ -26,6 +26,28 @@ pub async fn generate_code_and_start(
     .bind(&code)
     .execute(&pg_pool)
     .await?;
+
+    let check_in = sqlx::query_as::<_,check_in::CheckIn>(
+        r#"
+        SELECT * FROM check_ins
+        WHERE code = $1
+        "#
+    )
+    .bind(&code)
+    .fetch_one(&pg_pool)
+    .await?;
+
+    sqlx::query(
+        r#"
+        INSERT INTO groups_m2m_check_ins(group_name, check_in_id)
+        VALUES($1, $2)
+        "#
+    )
+    .bind(request.group_name)
+    .bind(check_in.id)
+    .execute(&pg_pool)
+    .await?;
+
 
     pg_pool.close().await;
     Ok(person::GenerateCodeAndStartResponse { code: code })

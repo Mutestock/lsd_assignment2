@@ -6,12 +6,19 @@ _ROOT_DIR = os.path.dirname(_ROOT_DIR)
 
 ROOT_DIR = os.path.dirname(_ROOT_DIR)
 CONFIG_FILE_PATH = ROOT_DIR + "/config.toml"
+RESOURCES_PATH = ROOT_DIR + "/resources"
+IMAGES_PATH = RESOURCES_PATH + "/images"
 CONFIG = {}
 
-_filename = CONFIG_FILE_PATH
+if not os.path.isdir(RESOURCES_PATH):
+    os.mkdir(f"{RESOURCES_PATH}/images")
+
+if not os.path.isdir(IMAGES_PATH):
+    os.mkdir(IMAGES_PATH)
+
 _content: str = ""
 
-with open(_filename) as f:
+with open(CONFIG_FILE_PATH) as f:
     _content = f.read()
 
 if os.getenv('CHECK_IN_GUI_DEV_MODE'):

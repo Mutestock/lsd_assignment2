@@ -17,6 +17,7 @@ class SubmitCheckIn(Widget):
     def __init__(self, **kwargs):
         super(SubmitCheckIn, self).__init__(**kwargs)
 
+    banner = StringProperty("Check In")
     check_in_input = StringProperty()
 
     def to_dashboard(self):
@@ -32,7 +33,8 @@ class SubmitCheckIn(Widget):
             self.check_in_input, get_public_ip(), app.username).checked_in
         print(checked_in)
         if checked_in:
+            self.banner = "Success!"
             print("Succesfully checked in")
-            
         else:
+            self.banner = "Failure. Check code"
             print("Failed to check in")

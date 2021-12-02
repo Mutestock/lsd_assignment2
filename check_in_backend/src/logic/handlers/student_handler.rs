@@ -4,7 +4,9 @@ use sqlx::Executor;
 
 use crate::connection::pg_connection::get_pg_pool;
 use crate::entities::{check_in::CheckIn, person};
-use crate::logic::cryptography::{parse_string_salt_to_byte_vector, verify_encryption};
+use crate::logic::cryptography::{
+    parse_string_salt_to_byte_vector, verify_encryption, verify_ip_encrypted,
+};
 use crate::utils::time::time_expired;
 
 pub async fn code_check_in(
@@ -36,9 +38,12 @@ pub async fn code_check_in(
     match code {
         Some(v) => {
             // Is the ip valid? Is it not too late?
-            println!("Inside check in, so the code was some - {}", v.code);
-            if (verify_encryption(request.ip, &parse_string_salt_to_byte_vector(v.ip_salt))?)
-                && !time_expired(v.check_end)
+            let parsed_salt = parse_string_salt_to_byte_vector(v.ip_salt.clone());
+            if (verify_ip_encrypted(
+                request.ip,
+                v.allowed_ip,
+                &parse_string_salt_to_byte_vector(v.ip_salt),
+            )) && !time_expired(v.check_end)
             {
                 println!("Encryption was verified...");
                 sqlx::query(

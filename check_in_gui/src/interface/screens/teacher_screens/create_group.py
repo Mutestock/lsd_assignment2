@@ -17,6 +17,7 @@ class CreateGroup(Widget):
         super(CreateGroup, self).__init__(**kwargs)
 
     group_name_input = StringProperty()
+    banner = StringProperty("Create group")
 
     def to_dashboard(self):
         self.parent.parent.current = "group_overview"
@@ -25,6 +26,9 @@ class CreateGroup(Widget):
         self.group_name_input = instance.text
 
     def submit_group_name(self):
-        app = App.get_running_app()
-        msg = create_group(self.group_name_input, app.username)
-        print(msg)
+        if self.group_name_input == "":
+            self.banner = "Group name can't be empty"
+        else:
+            app = App.get_running_app()
+            msg = create_group(self.group_name_input, app.username)
+            print(msg)

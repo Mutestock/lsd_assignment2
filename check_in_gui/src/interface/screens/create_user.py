@@ -16,6 +16,7 @@ class UserCreation(Widget):
     def __init__(self, **kwargs):
         super(UserCreation, self).__init__(**kwargs)
 
+    banner = StringProperty("Create New User (Demo only)")
     usr = StringProperty()
     pwd = StringProperty()
     is_teacher = BooleanProperty(False)
@@ -34,4 +35,12 @@ class UserCreation(Widget):
 
     def create_user(self):
         if self.usr and self.pwd:
-            user_client.create_user(User(self.usr, self.pwd, self.is_teacher))
+            msg = user_client.create_user(User(self.usr, self.pwd, self.is_teacher)).msg
+            print(msg)
+            if msg == "Err":
+                print("boop")
+                self.banner = "Some Error Occurred. Check duplicate username"
+            else:
+                self.banner = f"User {self.usr} created"
+                
+                

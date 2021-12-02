@@ -44,11 +44,18 @@
     rows: 3
     Button:
         text:"sync"
-        on_press: root.sync()
+        on_press: root.sync(self)
+
+<SubGrid>:
+    cols: 1
+    rows: 3
+    Label:
+        text: root.usr
 
 <DetachButton>
     text:"Detach"
     on_press: root.detach_student_from_group()
+    usr: root.usr
 
 
 

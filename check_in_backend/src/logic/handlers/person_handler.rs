@@ -10,15 +10,17 @@ use crate::logic::cryptography::*;
 pub async fn login(
     request: person::LoginRequest,
 ) -> Result<person::LoginResponse, Box<dyn std::error::Error>> {
+    let pg_pool = get_pg_pool().await?;
     let person = sqlx::query_as::<_, person::FullPerson>(
         r#"
         SELECT * FROM people WHERE username = $1
         "#,
     )
     .bind(request.username)
-    .fetch_optional(&get_pg_pool().await?)
+    .fetch_optional(&pg_pool)
     .await?;
 
+    pg_pool.close().await;
     // If username was found, check verify the password and send the results.
     // If no username was found => False
     match person {
@@ -38,8 +40,9 @@ pub async fn create_user(
 ) -> Result<person::CreateUserResponse, Box<dyn std::error::Error>> {
     let salt = generate_salt();
     let salty_pwd = hash_and_salt(request.password, &salt)?;
+    let pg_pool = get_pg_pool().await?;
 
-    sqlx::query(
+    match sqlx::query(
         r#"
         INSERT INTO people(is_teacher, username, pwd, salt)
         VALUES($1, $2, $3, $4)
@@ -49,12 +52,22 @@ pub async fn create_user(
     .bind(request.username)
     .bind(salty_pwd)
     .bind(format!("{:?}", &salt))
-    .execute(&get_pg_pool().await?)
-    .await?;
-
-    Ok(person::CreateUserResponse {
-        msg: "201".to_owned(),
-    })
+    .execute(&pg_pool)
+    .await
+    {
+        Ok(_) => {
+            pg_pool.close().await;
+            Ok(person::CreateUserResponse {
+                msg: "201".to_owned(),
+            })
+        }
+        Err(_) => {
+            pg_pool.close().await;
+            Ok(person::CreateUserResponse {
+                msg: "Err".to_owned(),
+            })
+        }
+    }
 }
 
 #[cfg(test)]

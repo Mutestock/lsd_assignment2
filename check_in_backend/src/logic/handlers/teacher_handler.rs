@@ -10,6 +10,7 @@ use crate::utils::time::{get_current_time_and_add_request_millis, parse_request_
 pub async fn generate_code_and_start(
     request: person::GenerateCodeAndStartRequest,
 ) -> Result<person::GenerateCodeAndStartResponse, Box<dyn std::error::Error>> {
+    let pg_pool = get_pg_pool().await?;
     let code = generate_code();
     let salt = generate_salt();
 
@@ -23,15 +24,18 @@ pub async fn generate_code_and_start(
     .bind(hash_and_salt(request.ip_encrypted, &salt)?)
     .bind(format!("{:?}", &salt))
     .bind(&code)
-    .execute(&get_pg_pool().await?)
+    .execute(&pg_pool)
     .await?;
 
+    pg_pool.close().await;
     Ok(person::GenerateCodeAndStartResponse { code: code })
 }
 
 pub async fn edit_countdown(
     request: person::EditCountdownRequest,
 ) -> Result<person::EditCountdownResponse, Box<dyn std::error::Error>> {
+    let pg_pool = get_pg_pool().await?;
+
     sqlx::query(
         r#"
         UPDATE check_ins SET check_end = $1
@@ -40,9 +44,10 @@ pub async fn edit_countdown(
     )
     .bind(parse_request_time(request.date_time.as_str()))
     .bind(request.code)
-    .execute(&get_pg_pool().await?)
+    .execute(&pg_pool)
     .await?;
 
+    pg_pool.close().await;
     Ok(person::EditCountdownResponse {
         msg: "Ok".to_owned(),
     })
@@ -51,15 +56,17 @@ pub async fn edit_countdown(
 pub async fn delete_code(
     request: person::DeleteCodeRequest,
 ) -> Result<person::DeleteCodeResponse, Box<dyn std::error::Error>> {
+    let pg_pool = get_pg_pool().await?;
     sqlx::query(
         r#"
         DELETE FROM check_ins where code = $1
         "#,
     )
     .bind(request.code)
-    .execute(&get_pg_pool().await?)
+    .execute(&pg_pool)
     .await?;
 
+    pg_pool.close().await;
     Ok(person::DeleteCodeResponse {
         msg: "Ok".to_owned(),
     })

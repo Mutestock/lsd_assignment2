@@ -1,6 +1,5 @@
 #![allow(dead_code, unused_variables, unused_imports)]
 
-
 use sqlx::Executor;
 
 use crate::connection::pg_connection::get_pg_pool;
@@ -11,6 +10,8 @@ use crate::utils::time::time_expired;
 pub async fn code_check_in(
     request: person::CodeCheckInRequest,
 ) -> Result<person::CodeCheckInResponse, Box<dyn std::error::Error>> {
+    let pg_pool = get_pg_pool().await?;
+
     let code = sqlx::query_as::<_, CheckIn>(
         r#"
         SELECT * FROM check_ins
@@ -18,7 +19,7 @@ pub async fn code_check_in(
         "#,
     )
     .bind(request.code)
-    .fetch_optional(&get_pg_pool().await?)
+    .fetch_optional(&pg_pool)
     .await?;
 
     let person = sqlx::query_as::<_, person::FullPerson>(
@@ -28,7 +29,7 @@ pub async fn code_check_in(
         "#,
     )
     .bind(request.username)
-    .fetch_one(&get_pg_pool().await?)
+    .fetch_one(&pg_pool)
     .await?;
 
     // Did the code exist?
@@ -48,14 +49,20 @@ pub async fn code_check_in(
                 )
                 .bind(person.username)
                 .bind(v.id)
-                .execute(&get_pg_pool().await?)
+                .execute(&pg_pool)
                 .await?;
+
+                pg_pool.close().await;
                 Ok(person::CodeCheckInResponse { checked_in: true })
             } else {
+                pg_pool.close().await;
                 Ok(person::CodeCheckInResponse { checked_in: false })
             }
         }
-        None => Ok(person::CodeCheckInResponse { checked_in: false }),
+        None => {
+            pg_pool.close().await;
+            Ok(person::CodeCheckInResponse { checked_in: false })
+        }
     }
 }
 
@@ -66,7 +73,8 @@ pub async fn get_stats(
     // Get relations in people <-> check_in. Missing IDS in relations vs all codes for each group for that student = Didn't submit
     // To return: Start date, End Date, Checked in, student usernaem, is_teacher
 
-    // Getting student with id
+    let pg_pool = get_pg_pool().await?;
+
     let stud = sqlx::query_as::<_, person::FullPerson>(
         r#"
         SELECT * FROM people
@@ -74,7 +82,7 @@ pub async fn get_stats(
         "#,
     )
     .bind(&request.username)
-    .fetch_one(&get_pg_pool().await?)
+    .fetch_one(&pg_pool)
     .await?;
 
     // Getting all check-ins of groups that the student is part of.
@@ -87,7 +95,7 @@ pub async fn get_stats(
         "#,
     )
     .bind(&request.username)
-    .fetch_all(&get_pg_pool().await?)
+    .fetch_all(&pg_pool)
     .await?;
 
     let all_successful_check_ins: Vec<CheckIn> = sqlx::query_as::<_, CheckIn>(
@@ -99,9 +107,10 @@ pub async fn get_stats(
         "#,
     )
     .bind(request.username)
-    .fetch_all(&get_pg_pool().await?)
+    .fetch_all(&pg_pool)
     .await?;
 
+    pg_pool.close().await;
     // Concatenate stat profile. Iterate through check_ins for checked_in_on_time attribute
     let stud_stats: Vec<person::get_stats_response::Stats> = all_check_ins_in_group
         .into_iter()
@@ -122,13 +131,17 @@ pub async fn get_stats(
 pub async fn get_all_students(
     request: person::GetAllStudentsRequest,
 ) -> Result<person::GetAllStudentsResponse, Box<dyn std::error::Error>> {
+    let pg_pool = get_pg_pool().await?;
+
     let studs = sqlx::query_as::<_, person::FullPerson>(
         r#"
         SELECT * FROM people where is_teacher = false
         "#,
     )
-    .fetch_all(&get_pg_pool().await?)
+    .fetch_all(&pg_pool)
     .await?;
+
+    pg_pool.close().await;
 
     Ok(person::GetAllStudentsResponse {
         studs: person::FullPerson::to_studs(studs),

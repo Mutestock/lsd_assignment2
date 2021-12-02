@@ -1,3 +1,4 @@
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
@@ -18,9 +19,30 @@ class GroupOverviewScreen(Screen):
         super(GroupOverviewScreen, self).__init__(**kw)
 
 
-class GroupPanel(BoxLayout):
+class GroupPanel(GridLayout):
     def __init__(self, **kwargs):
         super(GroupPanel, self).__init__(**kwargs)
+
+    def sync(self, _):
+        app = App.get_running_app()
+        app.attached_groups = group_client.get_all_groups_by_username(
+            app.username
+        ).group_names
+        self.clear_widgets()
+        panel = BoxLayout(orientation="vertical")
+        panel.add_widget(Button(text="sync", on_press=self.sync, size_hint_y=None, height=self.height/2))
+        grid = GridLayout(cols=1,row_force_default=True, row_default_height=panel.height/2)
+        for group_name in app.attached_groups:
+            print(group_name)
+            sub_grid = GridLayout(cols=3)
+            sub_grid.add_widget(Label(text=group_name))
+            sub_grid.add_widget(SelectGroup(group_name=group_name))
+            sub_grid.add_widget(DeleteGroup(group_name=group_name))
+            grid.add_widget(sub_grid)
+        panel.add_widget(grid)
+        self.add_widget(panel)
+        
+
 
 
 class SelectGroup(Button):
@@ -31,10 +53,11 @@ class SelectGroup(Button):
         self.group_name = group_name
 
     def select_group(self):
+        print("boop")
         app = App.get_running_app()
         app.selected_group_name = self.group_name
-        self.parent.parent.parent.parent.current = "specific_group_overview"
-        
+        self.parent.parent.parent.parent.parent.parent.parent.parent.current = "specific_group_overview"
+
 
 
 class DeleteGroup(Button):
@@ -57,16 +80,3 @@ class GroupOverview(Widget):
 
     def to_create_group(self):
         self.parent.parent.current = "create_group"
-
-    def sync(self):
-        app = App.get_running_app()
-        app.attached_groups = group_client.get_all_groups_by_username(
-            app.username
-        ).group_names
-        for group_name in app.attached_groups:
-            print(group_name)
-            panel = GroupPanel()
-            panel.add_widget(Label(text=group_name))
-            panel.add_widget(SelectGroup(group_name=group_name))
-            panel.add_widget(DeleteGroup(group_name=group_name))
-            self.add_widget(panel)

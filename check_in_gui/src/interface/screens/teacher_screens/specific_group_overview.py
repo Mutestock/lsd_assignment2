@@ -50,20 +50,23 @@ class StudentGrid(GridLayout):
     def sync(self, instance):
         app = App.get_running_app()
         self.clear_widgets()
-        self.add_widget(Button(text="sync", on_press=self.sync))
-        #for element in self.children:
-        #    element.clear_widgets()
+        panel = BoxLayout(orientation="vertical")
+        grid = GridLayout(cols=1,row_force_default=True, row_default_height=panel.height/2)
+        panel.add_widget(Button(text="sync", on_press=self.sync, height=panel.height/6))
         for stud in group_client.get_all_students_by_group_name(app.selected_group_name).studs:
             print("Username=" + stud.username)
-            sub_grid = SubGrid(usr=stud.username, cols=3, rows=3)
-            self.add_widget(sub_grid)
+            sub_grid = SubGrid(usr=stud.username)
+            grid.add_widget(sub_grid)
+            
+            
+        panel.add_widget(grid)
+        self.add_widget(panel)
+            
             
             
 # List of attached students. 
 
 class SpecificGroupOverview(Widget):
-    
-    banner = StringProperty("")
     
     def __init__(self, **kwargs):
         super(SpecificGroupOverview, self).__init__(**kwargs)

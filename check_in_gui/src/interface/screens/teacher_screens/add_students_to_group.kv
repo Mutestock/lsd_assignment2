@@ -6,23 +6,26 @@
     GridLayout:
         height: root.height
         width: root.width
+        row_force_default: True
+        row_default_height: root.height/4
         cols:1
         rows:4
         BoxLayout:
             Button:
                 text:"Back"
                 on_press:root.back()
-            Button:
-                text:"Sync"
-                on_press:root.sync()
-        Label:
-            text:"This is the group screen"
-            font_size:30
-            center_x:root.width/2
-            top: root.top-50
-
-<StudentPanel>:
-    orientation: 'vertical'
+        AddStudentGrid:
+        
+<AddStudentGrid>:
+    cols: 3
+    rows: 3
+    row_force_default: True
+    row_default_height: root.height/2
+    Button:
+        text: "sync"
+        on_press: root.sync(self)
+        size_hint_y: None
+        height: root.height/2
 
 <AddStudentButton>
     text: "Add"

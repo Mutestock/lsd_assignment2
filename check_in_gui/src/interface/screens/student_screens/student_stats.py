@@ -23,12 +23,13 @@ class StudentStatsBox(BoxLayout):
     def get_check_in_pie(self, _):
         app = App.get_running_app()
         all_stats = student_client.get_stats(app.username).all_stats
-        generate_pie_check_in_percentage(all_stats)
-        self.clear_widgets()
-        self.add_widget(Button(text="Check-in Pie", on_press=self.get_check_in_pie))
-        box = BoxLayout()
-        box.add_widget(Image(source=IMAGES_PATH+"/pie.png"))
-        self.add_widget(box)
+        if len(all_stats)>0:
+            generate_pie_check_in_percentage(all_stats)
+            self.clear_widgets()
+            self.add_widget(Button(text="Check-in Pie", on_press=self.get_check_in_pie))
+            box = BoxLayout()
+            box.add_widget(Image(source=IMAGES_PATH+"/pie.png"))
+            self.add_widget(box)
         
     
 

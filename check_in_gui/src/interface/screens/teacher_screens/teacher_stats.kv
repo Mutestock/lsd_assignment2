@@ -8,13 +8,8 @@
         width: root.width
         cols:1
         rows:4
-        Label:
-            id:"teacher_stats_label_id"
-            text:"This is the stats screen"
-            font_size:30
-            center_x:root.width/2
-            top: root.top-50
         BoxLayout:
+            height: root.height/4
             GridLayout:
                 cols:1
                 rows:4
@@ -22,3 +17,17 @@
                     id:"back_to_teacher_dashboard_from_stats_button_id"
                     text:"back"
                     on_press:root.to_dashboard()
+        StudentGridTeacherStats:
+
+
+<StudentGridTeacherStats>:
+    cols: 1
+    rows: 3
+    Button:
+        text:"sync"
+        on_press: root.sync(self)
+
+
+<PieButton>:
+    text: "Bake Pie"
+    on_press: root.bake_pie()
